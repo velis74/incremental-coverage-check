@@ -104,7 +104,7 @@ def intersection(a, b) -> list:
     return None
 
 def test_function():
-    // What
+    # What
     return "a"
 
 def test_function1():
