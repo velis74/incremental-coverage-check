@@ -1,0 +1,25 @@
+name: "Incremental coverage check"
+description: "Incremental coverage check"
+author: "Velis"
+inputs:
+  coverage_json:
+    description: "Coverage json"
+    required: true
+  logging_level:
+    description: "Loging level"
+    required: INFO
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: main
+        repository: utement/c-check
+        path: icc
+    - run: pip3 install -r icc/requirements.txt
+      shell: bash
+    - run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+      shell: bash
+    - run: python3 icc/main.py -w ${{ github.workspace }} -c HEAD  -b ${{ github.base_ref }} -j ${{ github.workspace }}/${{ inputs.coverage_json }} -l ${{ inputs.logging_level }}
+      shell: bash
+

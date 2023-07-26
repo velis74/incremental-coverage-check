@@ -1,0 +1,26 @@
+name: Coverage check
+on: [pull_request]
+jobs:
+  lint:
+    name: Code coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: ls
+        run: |
+          pwd
+          ls -lah
+      - name: Git branch
+        run: |
+          git branch
+      - uses: utement/c-check@wip
+        with:
+          coverage_json: test/resources/coverage.json
+          logging_level: DEBUG
+
