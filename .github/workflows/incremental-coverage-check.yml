@@ -12,13 +12,13 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - name: ls
+      - name: Python unittest
         run: |
-          pwd
-          ls -lah
-      - name: Git branch
+          coverage run -m unittest discover test
+      - name: Generate coverage report
+        continue-on-error: true
         run: |
-          git branch
+          coverage report -m
       - uses: velis74/incremental-coverage-check@python
         with:
           py_coverage_json: test/resources/coverage.json
