@@ -2,24 +2,39 @@ name: "Incremental coverage check"
 description: "Incremental coverage check"
 author: "Velis"
 inputs:
-  coverage_json:
-    description: "Coverage json"
-    required: true
+  clover-coverage_json:
+    description: "Clover coverage json"
+    default: "none"
+  py-coverage-json:
+    description: "Python coverage json"
+    default: "none"
   logging_level:
     description: "Loging level"
-    required: INFO
+    default: "INFO"
+  base-ref:
+    description: Base branch
+    defaut:  $GITHUB_BASE_REF
+  head-ref:
+    description: Base branch
+    defaut: "HEAD"
+  repository:
+    description: Tool repository
+    default: "velis74/incremental-coverage-check"
+  rep-ref:
+    description: Repository branch
+    default: "main"
 runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
       with:
         ref: main
-        repository: velis74/incremental-coverage-check
+        repository: ${{ inputs.repository }}
         path: icc
     - run: pip3 install -r icc/requirements.txt
       shell: bash
     - run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
       shell: bash
-    - run: python3 icc/main.py -w ${{ github.workspace }} -c HEAD  -b ${{ github.base_ref }} -j ${{ github.workspace }}/${{ inputs.coverage_json }} -l ${{ inputs.logging_level }}
+    - run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head-ref }}  -b ${{ inputs.base-ref }} --clover-coverage-json ${{ inputs.clover-coverage_json }} --py-coverage-json ${{ inputs.py-coverage_json }} -l ${{ inputs.logging_level }}
       shell: bash
 
