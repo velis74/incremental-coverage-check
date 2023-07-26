@@ -139,8 +139,9 @@ def main():
             logging.info(f"Working on file: {file}")
 
             file_data = coverage_data.get(file, None)
+            logging.debug(file_data)
 
-            if file_data:
+            if file_data is not None:
                 logging.debug("Getting file diff")
                 diff = get_file_diff(
                     args.current_branch, args.branch, args.working_dir, os.path.join(args.working_dir, file)
