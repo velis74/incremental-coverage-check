@@ -35,6 +35,6 @@ runs:
       shell: bash
     - run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
       shell: bash
-    - run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head-ref }} -b ${{ inputs.base-ref }} --clover-coverage-json ${{ inputs.clover-coverage_json }} --py-coverage-json ${{ inputs.py-coverage_json }} -l ${{ inputs.logging_level }}
+    - run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head-ref }}  -b ${{ inputs.base-ref }} --clover-coverage-json ${{ inputs.clover-coverage_json }} --py-coverage-json ${{ inputs.py-coverage_json }} -l ${{ inputs.logging_level }}
       shell: bash
 
