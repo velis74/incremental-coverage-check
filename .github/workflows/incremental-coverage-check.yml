@@ -5,13 +5,13 @@ jobs:
     name: Code coverage
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
       - name: Python unittest
         run: |
           coverage run -m unittest discover test
