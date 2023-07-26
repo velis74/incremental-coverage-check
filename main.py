@@ -45,12 +45,15 @@ def parse_py_coverage_data(path) -> dict:
     s:
         line:0/1
     """
-    coverage_data = {}
-    with open(path) as f:
-        data = json.load(f)
+    try:
+        coverage_data = {}
+        with open(path) as f:
+            data = json.load(f)
 
-        for file_name, file_data in data["files"].items():
-            coverage_data.update({file_name: {"missing_lines": file_data["missing_lines"]}})
+            for file_name, file_data in data["files"].items():
+                coverage_data.update({file_name: {"missing_lines": file_data["missing_lines"]}})
+    except Exception as e:
+        logging.debug(e)
     return coverage_data
 
 
