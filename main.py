@@ -103,6 +103,8 @@ def intersection(a, b) -> list:
         return a_set & b_set
     return None
 
+def test_function():
+    return "a"
 
 def main():
     try:
