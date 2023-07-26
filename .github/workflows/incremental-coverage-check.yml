@@ -19,8 +19,9 @@ jobs:
       - name: Git branch
         run: |
           git branch
-      - uses: velis74/incremental-coverage-check@main
+      - uses: velis74/incremental-coverage-check@python
         with:
           coverage_json: test/resources/coverage.json
           logging_level: DEBUG
+          rep-ref: python
 
