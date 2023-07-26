@@ -14,7 +14,7 @@ runs:
     - uses: actions/checkout@v3
       with:
         ref: main
-        repository: utement/c-check
+        repository: velis74/incremental-coverage-check
         path: icc
     - run: pip3 install -r icc/requirements.txt
       shell: bash

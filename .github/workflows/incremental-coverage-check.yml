@@ -19,7 +19,7 @@ jobs:
       - name: Git branch
         run: |
           git branch
-      - uses: utement/c-check@wip
+      - uses: velis74/incremental-coverage-check@main
         with:
           coverage_json: test/resources/coverage.json
           logging_level: DEBUG
