@@ -106,6 +106,9 @@ def intersection(a, b) -> list:
 def test_function():
     return "a"
 
+def test_function1():
+    return "a"
+
 def main():
     try:
         success = True
