@@ -103,6 +103,8 @@ def intersection(a, b) -> list:
         return a_set & b_set
     return None
 
+def test_function():
+    return "a"
 
 def main():
     try:
@@ -141,7 +143,9 @@ def main():
                 z = intersection(changed_lines, coverage_data[file]["missing_lines"])
 
                 total_changed_lines += len(changed_lines)
+                logging.debug(f"Total changed lines {total_changed_lines}")
                 total_uncovered_lines += len(z)
+                logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
         # TODO: division by zero
         percentage = round((total_uncovered_lines / total_changed_lines) * 100)
