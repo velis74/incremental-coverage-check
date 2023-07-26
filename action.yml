@@ -28,7 +28,7 @@ runs:
   steps:
     - uses: actions/checkout@v3
       with:
-        ref: main
+        ref: ${{ inputs.rep_ref }}
         repository: ${{ inputs.repository }}
         path: icc
     - run: pip3 install -r icc/requirements.txt
