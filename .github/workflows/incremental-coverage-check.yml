@@ -23,5 +23,5 @@ jobs:
         with:
           py_coverage_json: test/resources/coverage.json
           logging_level: DEBUG
-          rep-ref: python
+          rep_ref: python
 
