@@ -2,25 +2,25 @@ name: "Incremental coverage check"
 description: "Incremental coverage check"
 author: "Velis"
 inputs:
-  clover-coverage_json:
+  clover_coverage_json:
     description: "Clover coverage json"
     default: "none"
-  py-coverage-json:
+  py_coverage_json:
     description: "Python coverage json"
     default: "none"
   logging_level:
     description: "Loging level"
     default: "INFO"
-  base-ref:
+  base_ref:
     description: Base branch
-    defaut:  $GITHUB_BASE_REF
-  head-ref:
+    defaut: $GITHUB_BASE_REF
+  head_ref:
     description: Base branch
     defaut: "HEAD"
   repository:
     description: Tool repository
     default: "velis74/incremental-coverage-check"
-  rep-ref:
+  rep_ref:
     description: Repository branch
     default: "main"
 runs:
@@ -35,6 +35,6 @@ runs:
       shell: bash
     - run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
       shell: bash
-    - run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head-ref }}  -b ${{ inputs.base-ref }} --clover-coverage-json ${{ inputs.clover-coverage_json }} --py-coverage-json ${{ inputs.py-coverage_json }} -l ${{ inputs.logging_level }}
+    - run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head_ref }}  -b ${{ inputs.base_ref }} --clover-coverage-json ${{ inputs.clover_coverage_json }} --py_coverage_json ${{ inputs.py_coverage_json }} -l ${{ inputs.logging_level }}
       shell: bash
 
