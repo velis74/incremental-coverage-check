@@ -13,7 +13,7 @@ inputs:
     default: "INFO"
   base_ref:
     description: Base branch
-    defaut:  $GITHUB_BASE_REF
+    defaut: $GITHUB_BASE_REF
   head_ref:
     description: Base branch
     defaut: "HEAD"
