@@ -143,6 +143,7 @@ def main():
                 total_changed_lines += len(changed_lines)
                 total_uncovered_lines += len(z)
 
+        # TODO: division by zero
         percentage = round((total_uncovered_lines / total_changed_lines) * 100)
         logging.info(f"Total covered: {percentage}")
         if percentage < args.required_percentage:
