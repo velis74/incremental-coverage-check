@@ -122,12 +122,15 @@ def main():
         if not args.current_branch:
             args.current_branch = get_curr_branch(args.working_dir)
 
+        logging.debug("Args files")
         if args.files is None:
             args.files = get_changed_files(args.current_branch, args.branch, args.working_dir)
 
+        logging.debug("Args clover coverage json")
         if args.clover_coverage_json != "none":
             coverage_data = parse_coverage_file(os.path.join(args.working_dir, args.clover_coverage_json))
 
+        logging.debug("Args py coverage json")
         if args.py_coverage_json != "none":
             coverage_data.update(parse_py_coverage_data(os.path.join(args.working_dir, args.py_coverage_json)))
 
@@ -137,12 +140,15 @@ def main():
             file_data = coverage_data.get(file, None)
 
             if file_data:
+                logging.debug("Getting file diff")
                 diff = get_file_diff(
                     args.current_branch, args.branch, args.working_dir, os.path.join(args.working_dir, file)
                 )
                 parser = DiffParser(diff)
                 changed_lines = parser.parse()
+                logging.debug(f"Changed lines {len(changed_lines)}")
 
+                logging.debug("Intersection")
                 z = intersection(changed_lines, coverage_data[file]["missing_lines"])
 
                 total_changed_lines += len(changed_lines)
