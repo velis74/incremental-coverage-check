@@ -135,7 +135,7 @@ def intersection(a, b) -> list:
 
     if a_set & b_set:
         return a_set & b_set
-    return None
+    return []
 
 
 def main() -> bool:
