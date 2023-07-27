@@ -29,4 +29,4 @@ jobs:
           base_ref: ${{ github.base_ref }}
           head_ref: HEAD
           rep_ref: clover-refactor
-          logging_level: DEBUG
+          logging_level: INFO
