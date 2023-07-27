@@ -53,12 +53,18 @@ def parse_args() -> configargparse.ArgParser:
     return args
 
 
-def parse_coverage_file(coverage_json) -> dict:
+def parse_coverage_file(coverage_json, working_dir) -> dict:
     logging.info(f"Start parsing coverage file. {coverage_json}")
     coverage_data = {}
     with open(coverage_json) as coverage_json_file:
-        coverage_data = json.load(coverage_json_file)
-        logging.debug(f"{len(coverage_data)} files in coverage.json file.")
+        data = json.load(coverage_json_file)
+        for file, file_data in data.items():
+            missing_lines = []
+            for line, status in file_data["s"].items():
+                if status == 0:
+                    missing_lines.append(int(line) + 1)
+            file_name = file.replace(f"{working_dir}/", "")
+            coverage_data.update({file_name: {"missing_lines": missing_lines}})
     return coverage_data
 
 
@@ -151,7 +157,9 @@ def main() -> bool:
 
         logging.debug("Args clover coverage json")
         if args.clover_coverage_json != "none":
-            coverage_data = parse_coverage_file(os.path.join(args.working_dir, args.clover_coverage_json))
+            coverage_data = parse_coverage_file(
+                os.path.join(args.working_dir, args.clover_coverage_json), args.working_dir
+            )
 
         logging.debug(f"Args py coverage json. {args.py_coverage_json}")
         if args.py_coverage_json != "none":
