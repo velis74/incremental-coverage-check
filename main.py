@@ -74,6 +74,7 @@ def parse_py_coverage_data(path) -> dict:
     s:
         line:0/1
     """
+    logging.debug(f"Start parsing Python coverage file. {path}")
     try:
         coverage_data = {}
         with open(path) as f:
