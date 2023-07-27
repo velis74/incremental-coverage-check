@@ -54,7 +54,7 @@ def parse_args() -> configargparse.ArgParser:
 
 
 def parse_coverage_file(coverage_json) -> dict:
-    logging.info(f"Start parsing coverage file. {coverage_json}")
+    logging.debug(f"Start parsing coverage file. {coverage_json}")
     coverage_data = {}
     with open(coverage_json) as coverage_json_file:
         data = json.load(coverage_json_file)
@@ -73,7 +73,7 @@ def parse_py_coverage_data(path, working_dir) -> dict:
     s:
         line:0/1
     """
-    logging.info(f"Start parsing Python coverage file. {path}")
+    logging.debug(f"Start parsing Python coverage file. {path}")
     try:
         coverage_data = {}
         with open(path) as f:
@@ -168,12 +168,12 @@ def main() -> bool:
 
         for file in args.files:
             file_path = os.path.join(args.working_dir, file)
-            logging.info(f"Working on file: {file_path}")
+            logging.debug(f"Working on file: {file_path}")
 
             file_data = coverage_data.get(file_path, None)
 
             if file_data is None:
-                logging.info("Skipping...")
+                logging.debug("Skipping...")
             else:
                 checked_files_nr += 1
                 logging.debug("Getting file diff")
