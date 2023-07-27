@@ -213,7 +213,11 @@ def main():
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
         # TODO: division by zero
-        if total_uncovered_lines > 0 and total_changed_lines > 0:
+        if (
+            total_uncovered_lines > 0
+            and total_changed_lines > 0
+            and total_uncovered_lines < total_changed_lines
+        ):
             percentage = round((total_uncovered_lines / total_changed_lines) * 100)
         logging.info(f"Total covered: {percentage}")
         if percentage < args.required_percentage:
