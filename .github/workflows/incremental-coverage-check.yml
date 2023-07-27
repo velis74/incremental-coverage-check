@@ -23,9 +23,10 @@ jobs:
         run: |
           coverage report -m
           coverage json
-      - uses: velis74/incremental-coverage-check@python
+      - uses: velis74/incremental-coverage-check@main
         with:
           py_coverage_json: coverage.json
-          logging_level: INFO
           base_ref: ${{ github.base_ref }}
           head_ref: HEAD
+          rep_ref: main
+          logging_level: INFO
