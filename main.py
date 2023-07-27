@@ -154,11 +154,11 @@ def test_function1():
 
 def main():
     try:
-        success = True
         args = parse_args()
         coverage_data = {}
         total_changed_lines = 0
         total_uncovered_lines = 0
+        percentage = 0
 
         logging.basicConfig(level=getattr(logging, args.logging_level))
 
@@ -213,7 +213,8 @@ def main():
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
         # TODO: division by zero
-        percentage = round((total_uncovered_lines / total_changed_lines) * 100)
+        if total_uncovered_lines > 0 and total_changed_lines > 0:
+            percentage = round((total_uncovered_lines / total_changed_lines) * 100)
         logging.info(f"Total covered: {percentage}")
         if percentage < args.required_percentage:
             logging.info(
