@@ -28,5 +28,5 @@ jobs:
           py_coverage_json: coverage.json
           base_ref: ${{ github.base_ref }}
           head_ref: HEAD
-          rep_ref: main
+          rep_ref: results-comment
           logging_level: INFO
