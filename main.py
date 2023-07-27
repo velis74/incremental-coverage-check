@@ -60,7 +60,7 @@ def parse_args():
 
 
 def parse_coverage_file(coverage_json):
-    logging.debug("Start parsing coverage file.")
+    logging.info(f"Start parsing coverage file. {coverage_json}")
     coverage_data = {}
     with open(coverage_json) as coverage_json_file:
         coverage_data = json.load(coverage_json_file)
@@ -74,7 +74,7 @@ def parse_py_coverage_data(path) -> dict:
     s:
         line:0/1
     """
-    logging.debug(f"Start parsing Python coverage file. {path}")
+    logging.info(f"Start parsing Python coverage file. {path}")
     try:
         coverage_data = {}
         with open(path) as f:
@@ -216,6 +216,9 @@ def main():
         percentage = round((total_uncovered_lines / total_changed_lines) * 100)
         logging.info(f"Total covered: {percentage}")
         if percentage < args.required_percentage:
+            logging.info(
+                f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED."
+            )
             raise SystemExit("Failed")
 
     except Exception as e:
