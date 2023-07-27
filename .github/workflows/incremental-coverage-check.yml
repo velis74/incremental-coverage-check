@@ -33,6 +33,7 @@ jobs:
           rep_ref: results-comment
           logging_level: INFO
       - name: Create comment
+        continue-on-error: true
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.pull_request.number }}.
