@@ -177,7 +177,7 @@ def main():
                 os.path.join(args.working_dir, args.clover_coverage_json)
             )
 
-        logging.debug("Args py coverage json")
+        logging.debug(f"Args py coverage json. {args.py_coverage_json}")
         if args.py_coverage_json != "none":
             coverage_data.update(
                 parse_py_coverage_data(
