@@ -138,6 +138,7 @@ def main() -> bool:
         total_changed_lines = 0
         total_uncovered_lines = 0
         percentage = 0
+        checked_files_nr = 0
 
         logging.basicConfig(level=getattr(logging, args.logging_level))
 
@@ -164,6 +165,7 @@ def main() -> bool:
             if file_data is None:
                 logging.info("Skipping...")
             else:
+                checked_files_nr += 1
                 logging.debug("Getting file diff")
                 diff = get_file_diff(
                     args.current_branch,
@@ -186,11 +188,14 @@ def main() -> bool:
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
 
-        logging.info(f"Total covered in changed lines: {percentage}")
+        logging.info(f"Total covered in changed lines: {percentage}%")
 
-        if percentage < args.required_percentage:
+        if percentage < args.required_percentage and checked_files_nr > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
             raise SystemExit("Failed")
+        else:
+            logging.info("No files checked.")
+            return True
 
     except Exception as e:
         raise SystemExit(e)
