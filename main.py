@@ -53,7 +53,7 @@ def parse_args() -> configargparse.ArgParser:
     return args
 
 
-def parse_coverage_file(coverage_json, working_dir) -> dict:
+def parse_coverage_file(coverage_json) -> dict:
     logging.info(f"Start parsing coverage file. {coverage_json}")
     coverage_data = {}
     with open(coverage_json) as coverage_json_file:
@@ -63,12 +63,11 @@ def parse_coverage_file(coverage_json, working_dir) -> dict:
             for line, status in file_data["s"].items():
                 if status == 0:
                     missing_lines.append(int(line) + 1)
-            file_name = file.replace(f"{working_dir}/", "")
-            coverage_data.update({file_name: {"missing_lines": missing_lines}})
+            coverage_data.update({file: {"missing_lines": missing_lines}})
     return coverage_data
 
 
-def parse_py_coverage_data(path) -> dict:
+def parse_py_coverage_data(path, working_dir) -> dict:
     """
     file
     s:
@@ -81,7 +80,9 @@ def parse_py_coverage_data(path) -> dict:
             data = json.load(f)
 
             for file_name, file_data in data["files"].items():
-                coverage_data.update({file_name: {"missing_lines": file_data["missing_lines"]}})
+                coverage_data.update(
+                    {os.path.join(working_dir, file_name): {"missing_lines": file_data["missing_lines"]}}
+                )
     except Exception as e:
         logging.debug(e)
     return coverage_data
@@ -157,18 +158,18 @@ def main() -> bool:
 
         logging.debug("Args clover coverage json")
         if args.clover_coverage_json != "none":
-            coverage_data = parse_coverage_file(
-                os.path.join(args.working_dir, args.clover_coverage_json), args.working_dir
-            )
+            coverage_data = parse_coverage_file(os.path.join(args.working_dir, args.clover_coverage_json))
 
         logging.debug(f"Args py coverage json. {args.py_coverage_json}")
         if args.py_coverage_json != "none":
-            coverage_data.update(parse_py_coverage_data(os.path.join(args.working_dir, args.py_coverage_json)))
+            coverage_data.update(
+                parse_py_coverage_data(os.path.join(args.working_dir, args.py_coverage_json), args.working_dir)
+            )
 
         for file in args.files:
             logging.info(f"Working on file: {file}")
 
-            file_data = coverage_data.get(file, None)
+            file_data = coverage_data.get(os.path.join(args.working_dir, file), None)
 
             if file_data is None:
                 logging.info("Skipping...")
