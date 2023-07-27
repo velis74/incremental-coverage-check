@@ -24,9 +24,7 @@ def parse_args():
         default="INFO",
         help="Logging level INFO/DEBUG",
     )
-    parser.add_argument(
-        "-f", "--files", type=str, nargs="+", default=None, help="Files"
-    )
+    parser.add_argument("-f", "--files", type=str, nargs="+", default=None, help="Files")
     parser.add_argument(
         "--clover-coverage-json",
         type=str,
@@ -39,9 +37,7 @@ def parse_args():
         default="none",
         help="Python coverage json file.",
     )
-    parser.add_argument(
-        "-p", "--required-percentage", type=int, default=70, help="Required percentage"
-    )
+    parser.add_argument("-p", "--required-percentage", type=int, default=70, help="Required percentage")
     parser.add_argument("-b", "--branch", type=str, required=True, help="PR Branch")
     parser.add_argument(
         "-c",
@@ -51,9 +47,7 @@ def parse_args():
         required=False,
         help="Current Branch",
     )
-    parser.add_argument(
-        "-w", "--working-dir", type=str, required=True, help="Working dir"
-    )
+    parser.add_argument("-w", "--working-dir", type=str, required=True, help="Working dir")
 
     args, unknown = parser.parse_known_args()
     return args
@@ -81,9 +75,7 @@ def parse_py_coverage_data(path) -> dict:
             data = json.load(f)
 
             for file_name, file_data in data["files"].items():
-                coverage_data.update(
-                    {file_name: {"missing_lines": file_data["missing_lines"]}}
-                )
+                coverage_data.update({file_name: {"missing_lines": file_data["missing_lines"]}})
     except Exception as e:
         logging.debug(e)
     return coverage_data
@@ -91,9 +83,7 @@ def parse_py_coverage_data(path) -> dict:
 
 def get_file_diff(curr_branch, branch, path, file):
     try:
-        result = subprocess.check_output(
-            ["git", "-C", path, "diff", f"{branch}..{curr_branch}", "--", file]
-        )
+        result = subprocess.check_output(["git", "-C", path, "diff", f"{branch}..{curr_branch}", "--", file])
         files_list = result.decode("utf-8").strip()
         return files_list
     except subprocess.CalledProcessError as e:
@@ -125,9 +115,7 @@ def get_changed_files(curr_branch, branch, path):
 
 def get_curr_branch(path):
     try:
-        result = subprocess.check_output(
-            ["git", "-C", path, "rev-parse", "--abbrev-ref", "HEAD"]
-        )
+        result = subprocess.check_output(["git", "-C", path, "rev-parse", "--abbrev-ref", "HEAD"])
         current_branch = result.decode("utf-8").strip()
         return current_branch
     except subprocess.CalledProcessError:
@@ -167,23 +155,15 @@ def main():
 
         logging.debug("Args files")
         if args.files is None:
-            args.files = get_changed_files(
-                args.current_branch, args.branch, args.working_dir
-            )
+            args.files = get_changed_files(args.current_branch, args.branch, args.working_dir)
 
         logging.debug("Args clover coverage json")
         if args.clover_coverage_json != "none":
-            coverage_data = parse_coverage_file(
-                os.path.join(args.working_dir, args.clover_coverage_json)
-            )
+            coverage_data = parse_coverage_file(os.path.join(args.working_dir, args.clover_coverage_json))
 
         logging.debug(f"Args py coverage json. {args.py_coverage_json}")
         if args.py_coverage_json != "none":
-            coverage_data.update(
-                parse_py_coverage_data(
-                    os.path.join(args.working_dir, args.py_coverage_json)
-                )
-            )
+            coverage_data.update(parse_py_coverage_data(os.path.join(args.working_dir, args.py_coverage_json)))
 
         for file in args.files:
             logging.info(f"Working on file: {file}")
@@ -212,18 +192,11 @@ def main():
                 total_uncovered_lines += len(z)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
-        # TODO: division by zero
-        if (
-            total_uncovered_lines > 0
-            and total_changed_lines > 0
-            and total_uncovered_lines < total_changed_lines
-        ):
+        if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round((total_uncovered_lines / total_changed_lines) * 100)
         logging.info(f"Total covered: {percentage}")
         if percentage < args.required_percentage:
-            logging.info(
-                f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED."
-            )
+            logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
             raise SystemExit("Failed")
 
     except Exception as e:
