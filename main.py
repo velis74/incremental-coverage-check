@@ -188,7 +188,7 @@ def main() -> bool:
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
 
-        logging.info(f"Total covered in changed lines: {percentage}")
+        logging.info(f"Total covered in changed lines: {percentage}%")
 
         if percentage < args.required_percentage and checked_files_nr > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
