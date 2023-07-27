@@ -32,11 +32,11 @@ jobs:
           head_ref: HEAD
           rep_ref: results-comment
           logging_level: INFO
-      - name: Create comment
-        continue-on-error: true
-        uses: peter-evans/create-or-update-comment@v3
-        with:
-          issue-number: ${{ github.event.pull_request.number }}.
-          body: |
-            Coverage test result:
-          reactions: '+1'
+      - name: comment on the pull request
+          uses: hasura/comment-progress@v2.3.0
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            repository: "velis74/incremental-coverage-check"
+            number: ${{ github.event.number }}
+            id: coverage-test-result
+            message: "Coverage test result"
