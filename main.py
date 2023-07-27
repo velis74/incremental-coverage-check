@@ -10,7 +10,7 @@ import logging
 import logging.handlers
 
 
-def parse_args():
+def parse_args() -> configargparse.ArgParser:
     default_config_files = []
     parser = configargparse.ArgParser(
         description="Incremental coverage check",
@@ -53,7 +53,7 @@ def parse_args():
     return args
 
 
-def parse_coverage_file(coverage_json):
+def parse_coverage_file(coverage_json) -> dict:
     logging.info(f"Start parsing coverage file. {coverage_json}")
     coverage_data = {}
     with open(coverage_json) as coverage_json_file:
@@ -81,7 +81,7 @@ def parse_py_coverage_data(path) -> dict:
     return coverage_data
 
 
-def get_file_diff(curr_branch, branch, path, file):
+def get_file_diff(curr_branch, branch, path, file) -> str:
     try:
         result = subprocess.check_output(["git", "-C", path, "diff", f"{branch}..{curr_branch}", "--", file])
         files_list = result.decode("utf-8").strip()
@@ -91,7 +91,7 @@ def get_file_diff(curr_branch, branch, path, file):
         return False
 
 
-def get_changed_files(curr_branch, branch, path):
+def get_changed_files(curr_branch, branch, path) -> list:
     logging.debug("Get changed files from diff.")
     try:
         result = subprocess.check_output(
@@ -113,7 +113,7 @@ def get_changed_files(curr_branch, branch, path):
         return False
 
 
-def get_curr_branch(path):
+def get_curr_branch(path) -> str:
     try:
         result = subprocess.check_output(["git", "-C", path, "rev-parse", "--abbrev-ref", "HEAD"])
         current_branch = result.decode("utf-8").strip()
@@ -131,16 +131,7 @@ def intersection(a, b) -> list:
     return None
 
 
-def test_function():
-    # What
-    return "a"
-
-
-def test_function1():
-    return "a"
-
-
-def main():
+def main() -> bool:
     try:
         args = parse_args()
         coverage_data = {}
@@ -193,8 +184,10 @@ def main():
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
-            percentage = round((total_uncovered_lines / total_changed_lines) * 100)
-        logging.info(f"Total covered: {percentage}")
+            percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
+
+        logging.info(f"Total covered in changed lines: {percentage}")
+
         if percentage < args.required_percentage:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
             raise SystemExit("Failed")
