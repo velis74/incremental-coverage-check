@@ -129,13 +129,13 @@ def get_curr_branch(path) -> str:
         return False
 
 
-def intersection(a, b) -> list:
+def intersection(a, b) -> dict:
     a_set = set(a)
     b_set = set(b)
 
     if a_set & b_set:
         return a_set & b_set
-    return []
+    return {}
 
 
 def main() -> bool:
@@ -187,12 +187,12 @@ def main() -> bool:
                 changed_lines = parser.parse()
                 logging.debug(f"Changed lines {len(changed_lines)}")
 
-                logging.debug("Intersection")
-                z = intersection(changed_lines, coverage_data[file_path]["missing_lines"])
+                logging.debug(f"Intersection {changed_lines}, {coverage_data[file_path]['missing_lines']}")
+                coverage_intersection = intersection(changed_lines, coverage_data[file_path]["missing_lines"])
 
                 total_changed_lines += len(changed_lines)
                 logging.debug(f"Total changed lines {total_changed_lines}")
-                total_uncovered_lines += len(z)
+                total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
