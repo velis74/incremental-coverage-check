@@ -117,7 +117,7 @@ def get_changed_files(curr_branch, branch, path) -> list:
         return files_list
     except subprocess.CalledProcessError as e:
         logging.debug(e)
-        return False
+        return []
 
 
 def get_curr_branch(path) -> str:
@@ -167,9 +167,9 @@ def main() -> bool:
             )
 
         for file in args.files:
-            logging.info(f"Working on file: {file}")
-
             file_path = os.path.join(args.working_dir, file)
+            logging.info(f"Working on file: {file_path}")
+
             file_data = coverage_data.get(file_path, None)
 
             if file_data is None:
