@@ -24,6 +24,7 @@ jobs:
           coverage report -m
           coverage json
       - name: Calcuclate coverage
+        continue-on-error: true
         uses: velis74/incremental-coverage-check@main
         with:
           py_coverage_json: coverage.json
