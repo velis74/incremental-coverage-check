@@ -188,9 +188,10 @@ def main():
             logging.info(f"Working on file: {file}")
 
             file_data = coverage_data.get(file, None)
-            logging.debug(vars(file_data))
 
-            if file_data is not None:
+            if file_data is None:
+                logging.info("Skipping...")
+            else:
                 logging.debug("Getting file diff")
                 diff = get_file_diff(
                     args.current_branch,
