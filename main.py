@@ -169,7 +169,8 @@ def main() -> bool:
         for file in args.files:
             logging.info(f"Working on file: {file}")
 
-            file_data = coverage_data.get(os.path.join(args.working_dir, file), None)
+            file_path = os.path.join(args.working_dir, file)
+            file_data = coverage_data.get(file_path, None)
 
             if file_data is None:
                 logging.info("Skipping...")
@@ -187,7 +188,7 @@ def main() -> bool:
                 logging.debug(f"Changed lines {len(changed_lines)}")
 
                 logging.debug("Intersection")
-                z = intersection(changed_lines, coverage_data[file]["missing_lines"])
+                z = intersection(changed_lines, coverage_data[file_path]["missing_lines"])
 
                 total_changed_lines += len(changed_lines)
                 logging.debug(f"Total changed lines {total_changed_lines}")
