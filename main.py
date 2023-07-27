@@ -54,28 +54,35 @@ def parse_args() -> configargparse.ArgParser:
 
 
 def parse_coverage_file(coverage_json) -> dict:
-    logging.info(f"Start parsing coverage file. {coverage_json}")
+    logging.debug(f"Start parsing coverage file. {coverage_json}")
     coverage_data = {}
     with open(coverage_json) as coverage_json_file:
-        coverage_data = json.load(coverage_json_file)
-        logging.debug(f"{len(coverage_data)} files in coverage.json file.")
+        data = json.load(coverage_json_file)
+        for file, file_data in data.items():
+            missing_lines = []
+            for line, status in file_data["s"].items():
+                if status == 0:
+                    missing_lines.append(int(line) + 1)
+            coverage_data.update({file: {"missing_lines": missing_lines}})
     return coverage_data
 
 
-def parse_py_coverage_data(path) -> dict:
+def parse_py_coverage_data(path, working_dir) -> dict:
     """
     file
     s:
         line:0/1
     """
-    logging.info(f"Start parsing Python coverage file. {path}")
+    logging.debug(f"Start parsing Python coverage file. {path}")
     try:
         coverage_data = {}
         with open(path) as f:
             data = json.load(f)
 
             for file_name, file_data in data["files"].items():
-                coverage_data.update({file_name: {"missing_lines": file_data["missing_lines"]}})
+                coverage_data.update(
+                    {os.path.join(working_dir, file_name): {"missing_lines": file_data["missing_lines"]}}
+                )
     except Exception as e:
         logging.debug(e)
     return coverage_data
@@ -110,7 +117,7 @@ def get_changed_files(curr_branch, branch, path) -> list:
         return files_list
     except subprocess.CalledProcessError as e:
         logging.debug(e)
-        return False
+        return []
 
 
 def get_curr_branch(path) -> str:
@@ -122,13 +129,13 @@ def get_curr_branch(path) -> str:
         return False
 
 
-def intersection(a, b) -> list:
+def intersection(a, b) -> dict:
     a_set = set(a)
     b_set = set(b)
 
     if a_set & b_set:
         return a_set & b_set
-    return None
+    return {}
 
 
 def main() -> bool:
@@ -155,15 +162,18 @@ def main() -> bool:
 
         logging.debug(f"Args py coverage json. {args.py_coverage_json}")
         if args.py_coverage_json != "none":
-            coverage_data.update(parse_py_coverage_data(os.path.join(args.working_dir, args.py_coverage_json)))
+            coverage_data.update(
+                parse_py_coverage_data(os.path.join(args.working_dir, args.py_coverage_json), args.working_dir)
+            )
 
         for file in args.files:
-            logging.info(f"Working on file: {file}")
+            file_path = os.path.join(args.working_dir, file)
+            logging.debug(f"Working on file: {file_path}")
 
-            file_data = coverage_data.get(file, None)
+            file_data = coverage_data.get(file_path, None)
 
             if file_data is None:
-                logging.info("Skipping...")
+                logging.debug("Skipping...")
             else:
                 checked_files_nr += 1
                 logging.debug("Getting file diff")
@@ -177,18 +187,19 @@ def main() -> bool:
                 changed_lines = parser.parse()
                 logging.debug(f"Changed lines {len(changed_lines)}")
 
-                logging.debug("Intersection")
-                z = intersection(changed_lines, coverage_data[file]["missing_lines"])
+                logging.debug(f"Intersection {changed_lines}, {coverage_data[file_path]['missing_lines']}")
+                coverage_intersection = intersection(changed_lines, coverage_data[file_path]["missing_lines"])
 
                 total_changed_lines += len(changed_lines)
                 logging.debug(f"Total changed lines {total_changed_lines}")
-                total_uncovered_lines += len(z)
+                total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
 
-        logging.info(f"Total covered in changed lines: {percentage}%")
+        if checked_files_nr > 0:
+            logging.info(f"Total covered in changed lines: {percentage}%")
 
         if percentage < args.required_percentage and checked_files_nr > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")

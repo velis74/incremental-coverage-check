@@ -5,7 +5,7 @@ jobs:
     name: Code coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 2
       - name: Set up Python 3.9
@@ -28,5 +28,5 @@ jobs:
           py_coverage_json: coverage.json
           base_ref: ${{ github.base_ref }}
           head_ref: HEAD
-          rep_ref: main
+          rep_ref: clover-refactor
           logging_level: INFO

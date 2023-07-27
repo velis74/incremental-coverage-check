@@ -1,6 +1,6 @@
 {
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/index.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/index.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/index.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/index.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -986,8 +986,8 @@
       "3": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/vuetify.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/vuetify.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/vuetify.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/vuetify.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -1207,8 +1207,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/action-handler-mixin.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/action-handler-mixin.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/action-handler-mixin.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/action-handler-mixin.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -3550,8 +3550,8 @@
       "4": 6
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/action.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/action.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/action.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/action.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -7336,8 +7336,8 @@
       "18": 2
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/actions-mixin.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/actions-mixin.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/actions-mixin.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/actions-mixin.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -9290,8 +9290,8 @@
       "8": 74
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/actions-vuetify.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/actions-vuetify.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/actions-vuetify.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/actions-vuetify.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -9946,8 +9946,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/filtered-actions.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/actions/filtered-actions.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/filtered-actions.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/actions/filtered-actions.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -12977,8 +12977,8 @@
       "17": 1
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/api-consumer-loader.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/api-consumer-loader.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/api-consumer-loader.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/api-consumer-loader.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -13608,8 +13608,8 @@
       "3": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/api-consumer.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/api-consumer.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/api-consumer.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/api-consumer.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -14958,8 +14958,8 @@
       "8": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/component-display.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/component-display.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/component-display.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/component-display.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -15375,8 +15375,8 @@
       "1": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/consumer-logic-api.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/consumer-logic-api.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/consumer-logic-api.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/consumer-logic-api.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -17910,8 +17910,8 @@
       "13": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/consumer-logic-array.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/consumer-logic-array.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/consumer-logic-array.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/consumer-logic-array.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -19577,8 +19577,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/consumer-logic-base.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/consumer-logic-base.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/consumer-logic-base.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/consumer-logic-base.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -21880,8 +21880,8 @@
       "8": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/index-temporary.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_consumer/index-temporary.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/index-temporary.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_consumer/index-temporary.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -21958,8 +21958,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/index.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/index.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/index.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/index.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -22168,8 +22168,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/view-api.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/view-api.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/view-api.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/view-api.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -22317,8 +22317,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/view-generic.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/view-generic.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/view-generic.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/view-generic.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -22774,8 +22774,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/view-set-api.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/view-set-api.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/view-set-api.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/view-set-api.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -24051,8 +24051,8 @@
       "11": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/view-set-generic.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/api_view/view-set-generic.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/view-set-generic.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/api_view/view-set-generic.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -24299,8 +24299,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/classes/display-mode.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/classes/display-mode.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/classes/display-mode.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/classes/display-mode.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -25308,8 +25308,8 @@
       "2": 12
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/classes/indexed-array.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/classes/indexed-array.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/classes/indexed-array.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/classes/indexed-array.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -26357,8 +26357,8 @@
       "7": 1
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/field-group.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/field-group.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/field-group.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/field-group.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -27271,8 +27271,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/field.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/field.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/field.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/field.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -28378,8 +28378,8 @@
       "4": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/form-vuetify.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/form-vuetify.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/form-vuetify.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/form-vuetify.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -28797,8 +28797,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/form.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/form.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/form.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/form.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -29045,8 +29045,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/layout-vuetify.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/layout-vuetify.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/layout-vuetify.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/layout-vuetify.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -29431,8 +29431,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/layout.mixin.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/layout.mixin.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/layout.mixin.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/layout.mixin.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -30032,8 +30032,8 @@
       "4": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/row.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/row.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/row.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/row.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -30715,8 +30715,8 @@
       "2": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/field-operator.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/field-operator.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/field-operator.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/field-operator.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -32790,8 +32790,8 @@
       "3": 119
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/field-render-params.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/field-render-params.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/field-render-params.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/field-render-params.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -33577,8 +33577,8 @@
       "1": 16
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/field.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/field.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/field.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/field.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -35980,8 +35980,8 @@
       "19": 6
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/form-payload.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/form-payload.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/form-payload.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/form-payload.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -37490,8 +37490,8 @@
       "8": 4
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/layout.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/definitions/layout.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/layout.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/definitions/layout.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -39135,8 +39135,8 @@
       "7": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/base.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/base.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/base.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/base.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -40001,8 +40001,8 @@
       "8": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/checkbox.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/checkbox.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/checkbox.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/checkbox.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -40803,8 +40803,8 @@
       "5": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/ckeditor.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/ckeditor.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/ckeditor.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/ckeditor.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -41249,8 +41249,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/clear-input-button.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/clear-input-button.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/clear-input-button.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/clear-input-button.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -41508,8 +41508,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/conditional-visibility.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/conditional-visibility.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/conditional-visibility.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/conditional-visibility.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -43137,8 +43137,8 @@
       "1": 115
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/datetime.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/datetime.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/datetime.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/datetime.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -44220,8 +44220,8 @@
       "7": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/file.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/file.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/file.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/file.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -45671,8 +45671,8 @@
       "5": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/input-vuetify.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/input-vuetify.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/input-vuetify.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/input-vuetify.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -46065,8 +46065,8 @@
       "1": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/input.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/input.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/input.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/input.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -46789,8 +46789,8 @@
       "1": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/list.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/list.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/list.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/list.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -47420,8 +47420,8 @@
       "3": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/placeholder.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/placeholder.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/placeholder.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/placeholder.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -47663,8 +47663,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/select.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/select.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/select.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/select.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -50343,8 +50343,8 @@
       "15": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/text-area.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/form/inputs/text-area.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/text-area.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/form/inputs/text-area.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -51054,8 +51054,8 @@
       "4": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/dialog-definition.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/dialog-definition.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/dialog-definition.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/dialog-definition.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -52002,8 +52002,8 @@
       "6": 9
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/index.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/index.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/index.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/index.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -52058,8 +52058,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-api-vuetify.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-api-vuetify.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-api-vuetify.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-api-vuetify.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -52956,8 +52956,8 @@
       "4": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-renderer.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-renderer.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-renderer.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-renderer.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -53603,8 +53603,8 @@
       "1": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-view-api.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-view-api.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-view-api.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-view-api.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -54855,8 +54855,8 @@
       "5": 1
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-view-list.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-view-list.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-view-list.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-view-list.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -56665,8 +56665,8 @@
       "9": 3
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-view.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal-view.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-view.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal-view.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -57158,8 +57158,8 @@
       "1": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/modal.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/modal.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -58166,8 +58166,8 @@
       "4": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/definitions/dialog-size.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/modal/definitions/dialog-size.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/definitions/dialog-size.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/modal/definitions/dialog-size.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -59019,8 +59019,8 @@
       "1": 19
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/column-group.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/column-group.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/column-group.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/column-group.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -59339,8 +59339,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/ordering-indicator.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/ordering-indicator.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/ordering-indicator.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/ordering-indicator.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -59849,8 +59849,8 @@
       "3": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/render-measure.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/render-measure.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/render-measure.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/render-measure.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -60251,8 +60251,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/rows-visibility-observer.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/rows-visibility-observer.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/rows-visibility-observer.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/rows-visibility-observer.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -62150,8 +62150,8 @@
       "4": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/table-style.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/table-style.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/table-style.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/table-style.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -63295,8 +63295,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/table-vuetify.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/table-vuetify.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/table-vuetify.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/table-vuetify.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -64385,8 +64385,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/table.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/table.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/table.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/table.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -65557,8 +65557,8 @@
       "0": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/tbody-generic.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/tbody-generic.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/tbody-generic.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/tbody-generic.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -66075,8 +66075,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/tcolumn-generic.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/tcolumn-generic.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/tcolumn-generic.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/tcolumn-generic.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -67363,8 +67363,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/thead-generic.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/thead-generic.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/thead-generic.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/thead-generic.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -67969,8 +67969,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/trow-generic.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/trow-generic.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/trow-generic.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/trow-generic.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -68916,8 +68916,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/cell-renderers/index.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/cell-renderers/index.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/cell-renderers/index.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/cell-renderers/index.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -68972,8 +68972,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/cell-renderers/table-cell-date-time.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/cell-renderers/table-cell-date-time.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/cell-renderers/table-cell-date-time.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/cell-renderers/table-cell-date-time.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -69281,8 +69281,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/cell-renderers/table-cell-float.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/cell-renderers/table-cell-float.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/cell-renderers/table-cell-float.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/cell-renderers/table-cell-float.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -69953,8 +69953,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/column-ordering-direction.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/column-ordering-direction.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/column-ordering-direction.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/column-ordering-direction.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -70738,8 +70738,8 @@
       "1": 3
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/column-ordering.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/column-ordering.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/column-ordering.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/column-ordering.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -72861,8 +72861,8 @@
       "11": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/column.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/column.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/column.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/column.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -76770,8 +76770,8 @@
       "19": 2
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/columns.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/columns.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/columns.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/columns.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -77245,8 +77245,8 @@
       "0": 4
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/filterrow.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/filterrow.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/filterrow.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/filterrow.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -77970,8 +77970,8 @@
       "1": 1
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/responsive-layout.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/responsive-layout.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/responsive-layout.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/responsive-layout.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -79778,8 +79778,8 @@
       "3": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/row-types.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/row-types.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/row-types.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/row-types.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -80187,8 +80187,8 @@
       "1": 3
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/row.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/row.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/row.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/row.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -81026,8 +81026,8 @@
       "4": 1
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/rows.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/table/definitions/rows.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/rows.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/table/definitions/rows.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -82715,8 +82715,8 @@
       "9": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/api-client.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/api-client.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/api-client.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/api-client.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -83387,8 +83387,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/breakpoints-bootstrap.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/breakpoints-bootstrap.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/breakpoints-bootstrap.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/breakpoints-bootstrap.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -84941,8 +84941,8 @@
       "4": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/breakpoints-vuetify.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/breakpoints-vuetify.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/breakpoints-vuetify.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/breakpoints-vuetify.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -86210,8 +86210,8 @@
       "2": 1017
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/breakpoints.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/breakpoints.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/breakpoints.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/breakpoints.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -86558,8 +86558,8 @@
       "0": 1017
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/get-object-from-path.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/get-object-from-path.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/get-object-from-path.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/get-object-from-path.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -86810,8 +86810,8 @@
       "0": 6
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/loading-indicator.vue": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/loading-indicator.vue",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/loading-indicator.vue": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/loading-indicator.vue",
     "all": false,
     "statementMap": {
       "0": {
@@ -87999,8 +87999,8 @@
     "fnMap": {},
     "f": {}
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/request-tracker.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/request-tracker.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/request-tracker.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/request-tracker.ts",
     "all": false,
     "statementMap": {
       "0": {
@@ -90108,8 +90108,8 @@
       "9": 0
     }
   },
-  "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/translations-mixin.ts": {
-    "path": "/Users/utement/Projects/scantron/DynamicForms/vue/dynamicforms/src/components/util/translations-mixin.ts",
+  "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/translations-mixin.ts": {
+    "path": "/Users/utement/Projects/velis/incremental-coverage-check/vue/dynamicforms/src/components/util/translations-mixin.ts",
     "all": false,
     "statementMap": {
       "0": {
