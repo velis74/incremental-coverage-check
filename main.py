@@ -9,6 +9,9 @@ from diff_parser import DiffParser
 import logging
 import logging.handlers
 
+from github import Github
+from github import Auth
+
 
 def parse_args() -> configargparse.ArgParser:
     default_config_files = []
@@ -140,6 +143,9 @@ def intersection(a, b) -> dict:
 
 def main() -> bool:
     try:
+        auth = Auth.Token("access_token")
+        g = Github(auth=auth)
+
         args = parse_args()
         coverage_data = {}
         total_changed_lines = 0
