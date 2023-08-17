@@ -30,9 +30,9 @@ jobs:
           else
             echo "PUSH_EVENT=true" >> $GITHUB_ENV
           fi
-    - name: Display Event Type
-      run: |
-        echo "Is Push Event: $PUSH_EVENT"
+      - name: Display Event Type
+        run: |
+          echo "Is Push Event: $PUSH_EVENT"
       - uses: velis74/incremental-coverage-check@main
         with:
           py_coverage_json: coverage.json
