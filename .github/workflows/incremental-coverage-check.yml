@@ -31,7 +31,8 @@ jobs:
           base_ref: ${{ github.base_ref }}
           head_ref: HEAD
           rep_ref: 653-print-out-10-least-covered-files
-          logging_level: INFO
+          logging_level: DEBUG
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
         if: github.event_name == 'pull_request'
 
       - name: Coverage check on push
@@ -41,6 +42,6 @@ jobs:
           base_ref: ${{ github.event.before }}
           head_ref: HEAD
           rep_ref: 653-print-out-10-least-covered-files
-          logging_level: INFO
+          logging_level: DEBUG
           gh_token: ${{ secrets.GITHUB_TOKEN }}
         if: github.event_name == 'push'
