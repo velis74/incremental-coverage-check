@@ -145,6 +145,7 @@ def main() -> bool:
     try:
         auth = Auth.Token("access_token")
         g = Github(auth=auth)
+        g.get_user().login
         print(vars(g))
 
         args = parse_args()
