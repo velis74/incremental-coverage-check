@@ -37,7 +37,7 @@ jobs:
         uses: velis74/incremental-coverage-check@main
         with:
           py_coverage_json: coverage.json
-          base_ref: ${{ {github.event.before }}
+          base_ref: ${{ github.event.before }}
           head_ref: HEAD
           rep_ref: main
           logging_level: INFO
