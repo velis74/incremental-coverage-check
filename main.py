@@ -207,7 +207,10 @@ def main() -> bool:
 
         auth = Auth.Token(args.gh_token)
         g = Github(auth=auth)
-        g.get_user().login
+        repo = g.get_repo("velis74/incremental-coverage-check")
+        pr = repo.get_pull(11)
+        last_commit = pr.get_commits()[pr.commits - 1]
+        comment = pr.create_comment("This is a comment", last_commit, "file.txt", 0)
 
         if percentage < args.required_percentage and checked_files_nr > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
