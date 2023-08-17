@@ -25,7 +25,7 @@ jobs:
           coverage json
       - name: Set Event Type
         run: |
-          if [ -n "${GITHUB_REF##refs/heads/}" ]; then
+          if [ -n "${{ github.event.action }} " ]; then
             echo "PUSH_EVENT=false" >> $GITHUB_ENV
           else
             echo "PUSH_EVENT=true" >> $GITHUB_ENV
@@ -33,6 +33,7 @@ jobs:
       - name: Display Event Type
         run: |
           echo "Is Push Event: $PUSH_EVENT"
+          echo "${{ github.event.action }} "
       - uses: velis74/incremental-coverage-check@main
         with:
           py_coverage_json: coverage.json
