@@ -51,6 +51,7 @@ def parse_args() -> configargparse.ArgParser:
         help="Current Branch",
     )
     parser.add_argument("-w", "--working-dir", type=str, required=True, help="Working dir")
+    parser.add_argument("-g", "--gh-token", type=str, required=True, default="none", help="Github token")
 
     args, unknown = parser.parse_known_args()
     return args
@@ -143,11 +144,6 @@ def intersection(a, b) -> dict:
 
 def main() -> bool:
     try:
-        auth = Auth.Token("access_token")
-        g = Github(auth=auth)
-        g.get_user().login
-        print(vars(g))
-
         args = parse_args()
         coverage_data = {}
         total_changed_lines = 0
@@ -208,6 +204,10 @@ def main() -> bool:
 
         if checked_files_nr > 0:
             logging.info(f"Total covered in changed lines: {percentage}%")
+
+        auth = Auth.Token(args.gh_token)
+        g = Github(auth=auth)
+        g.get_user().login
 
         if percentage < args.required_percentage and checked_files_nr > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
