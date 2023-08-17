@@ -40,6 +40,6 @@ jobs:
           py_coverage_json: coverage.json
           base_ref: ${{ github.event.before }}
           head_ref: HEAD
-          rep_ref: main
+          rep_ref: 653-print-out-10-least-covered-files
           logging_level: INFO
         if: github.event_name == 'push'
