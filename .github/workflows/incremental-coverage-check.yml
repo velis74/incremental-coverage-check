@@ -25,7 +25,7 @@ jobs:
           coverage json
       - name: Set Event Type
         run: |
-          if [ "${{ github.event_name }}" == "push" ]; then
+          if [ ${{ github.event_name }} == "push" ]; then
             echo "PUSH_EVENT=false" >> $GITHUB_ENV
           else
             echo "PUSH_EVENT=true" >> $GITHUB_ENV
