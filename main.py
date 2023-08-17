@@ -51,7 +51,7 @@ def parse_args() -> configargparse.ArgParser:
         help="Current Branch",
     )
     parser.add_argument("-w", "--working-dir", type=str, required=True, help="Working dir")
-    parser.add_argument("-g", "--gh-token", type=str, required=True, default="none", help="Github token")
+    parser.add_argument("-g", "--gh-token", type=str, default="none", help="Github token")
 
     args, unknown = parser.parse_known_args()
     return args
