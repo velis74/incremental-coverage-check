@@ -147,6 +147,8 @@ def intersection(a, b) -> dict:
 def report2txt(report):
     out = "Coverage report:\n\n"
 
+    out += f"Skipped files: {report['skipped_files']['count']}"
+
     return out
 
 
@@ -158,6 +160,7 @@ def main() -> bool:
         total_uncovered_lines = 0
         percentage = 0
         checked_files_nr = 0
+        skipped_files_count = 0
         report = dict()
 
         logging.basicConfig(level=getattr(logging, args.logging_level))
@@ -187,6 +190,7 @@ def main() -> bool:
 
             if file_data is None:
                 logging.debug("Skipping...")
+                skipped_files_count += 1
             else:
                 checked_files_nr += 1
                 logging.debug("Getting file diff")
@@ -207,6 +211,8 @@ def main() -> bool:
                 logging.debug(f"Total changed lines {total_changed_lines}")
                 total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
+
+        report["skipped_files"]["count"] = skipped_files_count
 
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
