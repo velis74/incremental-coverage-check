@@ -156,7 +156,7 @@ def report2txt(report):
     try:
         for file, data in report["checked_files"]["files"].items():
             # report.update({"checked_files": {"files": {file: {"uncovered_lines": coverage_intersection}}}})
-            out += f"{file}: {collect_uncovered_lines_2_txt(data['uncovered_lines'])}"
+            out += f"{file}: {collect_uncovered_lines_2_txt(data['uncovered_lines'])}\n"
     except:
         pass
 
@@ -166,7 +166,7 @@ def report2txt(report):
 def collect_uncovered_lines_2_txt(data):
     out = ""
     start = 0
-    running = 1
+    running = 0
     for line in data:
         if start == 0:
             start = running
@@ -174,7 +174,9 @@ def collect_uncovered_lines_2_txt(data):
         if line > running + 1:
             if out != "":
                 out += ", "
-            if start == running:
+            if start == 0:
+                pass
+            elif start == running:
                 out += f"{running}"
             else:
                 out += f"{start}-{running}"

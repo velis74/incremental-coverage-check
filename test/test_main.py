@@ -17,7 +17,7 @@ class TestMain(TestCase):
     #     self.assertTrue(type(files) is list)
 
     def test_collect_uncovered_lines_2_txt(self) -> None:
-        self.assertEqual("1-3", collect_uncovered_lines_2_txt({1, 2, 3}))
+        self.assertEqual("6-12", collect_uncovered_lines_2_txt({6, 7, 8, 9, 10, 11, 12}))
         self.assertEqual("1-3, 5, 8, 12-17", collect_uncovered_lines_2_txt({1, 2, 3, 5, 8, 12, 13, 14, 15, 16, 17}))
         self.assertEqual(
             "1-3, 5, 8, 12-17, 22", collect_uncovered_lines_2_txt({1, 2, 3, 5, 8, 12, 13, 14, 15, 16, 17, 22})
