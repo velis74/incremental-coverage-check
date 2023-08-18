@@ -9,6 +9,9 @@ from diff_parser import DiffParser
 import logging
 import logging.handlers
 
+from github import Github
+from github import Auth
+
 
 def parse_args() -> configargparse.ArgParser:
     default_config_files = []
@@ -48,6 +51,9 @@ def parse_args() -> configargparse.ArgParser:
         help="Current Branch",
     )
     parser.add_argument("-w", "--working-dir", type=str, required=True, help="Working dir")
+    parser.add_argument("-g", "--gh-token", type=str, default="none", help="Github token")
+    parser.add_argument("-r", "--repository", type=str, default="none", help="Repository")
+    parser.add_argument("-i", "--issue", type=str, default="none", help="Issue nr")
 
     args, unknown = parser.parse_known_args()
     return args
@@ -138,6 +144,60 @@ def intersection(a, b) -> dict:
     return {}
 
 
+def report2txt(report):
+    logging.debug(f"Report: {report}")
+    out = "Coverage report:\n\n"
+
+    out += f"Total changed lines: {report['total_changed_lines']['count']}\n"
+    out += f"Checked files:\n"
+
+    try:
+        for file, data in report["checked_files"]["files"].items():
+            # report.update({"checked_files": {"files": {file: {"uncovered_lines": coverage_intersection}}}})
+            txt_uncovered_lines = collect_uncovered_lines_2_txt(data["uncovered_lines"])
+
+            if txt_uncovered_lines == "0":
+                txt_uncovered_lines = ""
+            out += f"{file} ({data['covered']}%): {txt_uncovered_lines}\n"
+    except:
+        pass
+
+    return out
+
+
+def collect_uncovered_lines_2_txt(data):
+    out = ""
+    start = 0
+    running = 0
+    for line in data:
+        if start == 0:
+            start = running
+
+        if line > running + 1:
+            if out != "":
+                out += ", "
+            if start == 0:
+                pass
+            elif start == running:
+                out += f"{running}"
+            else:
+                out += f"{start}-{running}"
+            start = 0
+
+        running = line
+
+    if start == 0:
+        start = running
+
+    if out != "":
+        out += ", "
+    if start == running:
+        out += f"{running}"
+    else:
+        out += f"{start}-{running}"
+    return out
+
+
 def main() -> bool:
     try:
         args = parse_args()
@@ -145,7 +205,10 @@ def main() -> bool:
         total_changed_lines = 0
         total_uncovered_lines = 0
         percentage = 0
-        checked_files_nr = 0
+        checked_files_count = 0
+        skipped_files_count = 0
+        report = dict()
+        report_files = dict()
 
         logging.basicConfig(level=getattr(logging, args.logging_level))
 
@@ -174,8 +237,9 @@ def main() -> bool:
 
             if file_data is None:
                 logging.debug("Skipping...")
+                skipped_files_count += 1
             else:
-                checked_files_nr += 1
+                checked_files_count += 1
                 logging.debug("Getting file diff")
                 diff = get_file_diff(
                     args.current_branch,
@@ -189,19 +253,37 @@ def main() -> bool:
 
                 logging.debug(f"Intersection {changed_lines}, {coverage_data[file_path]['missing_lines']}")
                 coverage_intersection = intersection(changed_lines, coverage_data[file_path]["missing_lines"])
+                logging.debug(f"Coverage intersection: {sorted(coverage_intersection)}")
 
                 total_changed_lines += len(changed_lines)
                 logging.debug(f"Total changed lines {total_changed_lines}")
                 total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
+                file_percentage = round(((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100)
+
+                report_files.update(
+                    {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
+                )
+
+        report.update({"checked_files": {"count": checked_files_count, "files": report_files}})
+        report.update({"skipped_files": {"count": skipped_files_count}})
+        report.update({"total_changed_lines": {"count": total_changed_lines}})
+
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
 
-        if checked_files_nr > 0:
+        if checked_files_count > 0:
             logging.info(f"Total covered in changed lines: {percentage}%")
 
-        if percentage < args.required_percentage and checked_files_nr > 0:
+        if args.gh_token != "none":
+            auth = Auth.Token(args.gh_token)
+            g = Github(auth=auth)
+            repo = g.get_repo(args.repository)
+            pr = repo.get_issue(int(args.issue))
+            comment = pr.create_comment(report2txt(report))
+
+        if percentage < args.required_percentage and checked_files_count > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
             raise SystemExit("Failed")
         else:

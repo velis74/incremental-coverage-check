@@ -1,3 +1,4 @@
 ConfigArgParse
 coverage
 black[d]
+PyGithub

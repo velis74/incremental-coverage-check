@@ -17,25 +17,28 @@ inputs:
   head_ref:
     description: Base branch
     defaut: "HEAD"
-  repository:
+  tool_repository:
     description: Tool repository
     default: "velis74/incremental-coverage-check"
   rep_ref:
     description: Repository branch
     default: "main"
+  gh_token:
+    description: Github token
+    default: "none"
 runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
       with:
         ref: ${{ inputs.rep_ref }}
-        repository: ${{ inputs.repository }}
+        repository: ${{ inputs.tool_repository }}
         path: icc
     - run: pip3 install -r icc/requirements.txt
       shell: bash
     - run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
       shell: bash
     - name: Run coverage check
-      run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head_ref }}  -b ${{ inputs.base_ref }} --clover-coverage-json ${{ inputs.clover_coverage_json }} --py-coverage-json ${{ inputs.py_coverage_json }} -l ${{ inputs.logging_level }}
+      run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head_ref }}  -b ${{ inputs.base_ref }} --clover-coverage-json ${{ inputs.clover_coverage_json }} --py-coverage-json ${{ inputs.py_coverage_json }} -l ${{ inputs.logging_level }} --gh-token ${{ inputs.gh_token }} -r ${{ github.repository }} -i ${{github.event.pull_request.number}}
       shell: bash
 
