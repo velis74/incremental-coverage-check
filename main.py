@@ -251,6 +251,7 @@ def main() -> bool:
 
                 logging.debug(f"Intersection {changed_lines}, {coverage_data[file_path]['missing_lines']}")
                 coverage_intersection = intersection(changed_lines, coverage_data[file_path]["missing_lines"])
+                logging.debug(f"Coverage intersection: {coverage_intersection}")
 
                 total_changed_lines += len(changed_lines)
                 logging.debug(f"Total changed lines {total_changed_lines}")
