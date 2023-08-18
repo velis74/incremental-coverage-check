@@ -156,7 +156,11 @@ def report2txt(report):
     try:
         for file, data in report["checked_files"]["files"].items():
             # report.update({"checked_files": {"files": {file: {"uncovered_lines": coverage_intersection}}}})
-            out += f"{file} {data['covered']}%: {collect_uncovered_lines_2_txt(data['uncovered_lines'])}\n"
+            txt_uncovered_lines = collect_uncovered_lines_2_txt(data["uncovered_lines"])
+
+            if txt_uncovered_lines == "0":
+                txt_uncovered_lines = ""
+            out += f"{file} ({data['covered']}%): {txt_uncovered_lines}\n"
     except:
         pass
 
