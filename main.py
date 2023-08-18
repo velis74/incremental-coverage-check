@@ -211,8 +211,8 @@ def main() -> bool:
             auth = Auth.Token(args.gh_token)
             g = Github(auth=auth)
             repo = g.get_repo(args.repository)
-            pr = repo.get_issue(args.issue)
-            comment = pr.create_comment("This is a comment")
+            pr = repo.get_issue(int(args.issue))
+            comment = pr.create_comment("This is another comment")
 
         if percentage < args.required_percentage and checked_files_nr > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
