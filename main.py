@@ -146,19 +146,51 @@ def intersection(a, b) -> dict:
 
 def report2txt(report):
     logging.debug(f"Report: {report}")
-    out = "Coverage report:\n"
+    out = "Coverage report:\n\n"
 
     out += f"Total changed lines: {report['total_changed_lines']['count']}\n"
     # out += f"Skipped files: {report['skipped_files']['count']}\n"
-    out += f"Checked files: {report['checked_files']['count']}\n"
+    # out += f"Checked files: {report['checked_files']['count']}\n"
+    out += f"Checked files:\n"
 
     try:
         for file, data in report["checked_files"]["files"].items():
             # report.update({"checked_files": {"files": {file: {"uncovered_lines": coverage_intersection}}}})
-            out += f"{file}: {data['uncovered_lines']}"
+            out += f"{file}: {collect_uncovered_lines_2_txt(data['uncovered_lines'])}"
     except:
         pass
 
+    return out
+
+
+def collect_uncovered_lines_2_txt(data):
+    out = ""
+    start = 0
+    running = 1
+    for line in data:
+        if start == 0:
+            start = running
+
+        if line > running + 1:
+            if out != "":
+                out += ", "
+            if start == running:
+                out += f"{running}"
+            else:
+                out += f"{start}-{running}"
+            start = 0
+
+        running = line
+
+    if start == 0:
+        start = running
+
+    if out != "":
+        out += ", "
+    if start == running:
+        out += f"{running}"
+    else:
+        out += f"{start}-{running}"
     return out
 
 
