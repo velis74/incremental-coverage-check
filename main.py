@@ -205,12 +205,14 @@ def main() -> bool:
         if checked_files_nr > 0:
             logging.info(f"Total covered in changed lines: {percentage}%")
 
-        auth = Auth.Token(args.gh_token)
-        g = Github(auth=auth)
-        repo = g.get_repo("velis74/incremental-coverage-check")
-        pr = repo.get_pull(11)
-        last_commit = pr.get_commits()[pr.commits - 1]
-        comment = pr.create_comment("This is a comment", last_commit, "main.py", 212)
+        if args.gh_token != "none":
+            auth = Auth.Token(args.gh_token)
+            g = Github(auth=auth)
+            repo = g.get_repo("velis74/incremental-coverage-check")
+            pr = repo.get_issue(11)
+            # last_commit = pr.get_commits()[pr.commits - 1]
+            # comment = pr.create_comment("This is a comment", last_commit, "main.py", 212)
+            comment = pr.create_comment("This is a comment")
 
         if percentage < args.required_percentage and checked_files_nr > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
