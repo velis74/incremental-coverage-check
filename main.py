@@ -172,6 +172,7 @@ def main() -> bool:
         checked_files_count = 0
         skipped_files_count = 0
         report = dict()
+        report_files = dict()
 
         logging.basicConfig(level=getattr(logging, args.logging_level))
 
@@ -222,9 +223,9 @@ def main() -> bool:
                 total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
-                report.update({"checked_files": {"files": {file: {"uncovered_lines": coverage_intersection}}}})
+                report_files.update({file: {"uncovered_lines": coverage_intersection}})
 
-        report.update({"checked_files": {"count": checked_files_count}})
+        report.update({"checked_files": {"count": checked_files_count, "files": report_files}})
         report.update({"skipped_files": {"count": skipped_files_count}})
         report.update({"total_changed_lines": {"count": total_changed_lines}})
 
