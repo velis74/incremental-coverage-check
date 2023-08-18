@@ -251,14 +251,14 @@ def main() -> bool:
 
                 logging.debug(f"Intersection {changed_lines}, {coverage_data[file_path]['missing_lines']}")
                 coverage_intersection = intersection(changed_lines, coverage_data[file_path]["missing_lines"])
-                logging.debug(f"Coverage intersection: {coverage_intersection}")
+                logging.debug(f"Coverage intersection: {sorted(coverage_intersection)}")
 
                 total_changed_lines += len(changed_lines)
                 logging.debug(f"Total changed lines {total_changed_lines}")
                 total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
-                report_files.update({file: {"uncovered_lines": coverage_intersection}})
+                report_files.update({file: {"uncovered_lines": sorted(coverage_intersection)}})
 
         report.update({"checked_files": {"count": checked_files_count, "files": report_files}})
         report.update({"skipped_files": {"count": skipped_files_count}})
