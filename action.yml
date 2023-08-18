@@ -39,6 +39,6 @@ runs:
     - run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
       shell: bash
     - name: Run coverage check
-      run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head_ref }}  -b ${{ inputs.base_ref }} --clover-coverage-json ${{ inputs.clover_coverage_json }} --py-coverage-json ${{ inputs.py_coverage_json }} -l ${{ inputs.logging_level }} --gh-token ${{ inputs.gh_token }} -r ${{ github.repository }} -i ${{ github.event_path }}
+      run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head_ref }}  -b ${{ inputs.base_ref }} --clover-coverage-json ${{ inputs.clover_coverage_json }} --py-coverage-json ${{ inputs.py_coverage_json }} -l ${{ inputs.logging_level }} --gh-token ${{ inputs.gh_token }} -r ${{ github.repository }} -i ${{github.event.pull_request.number}}
       shell: bash
 
