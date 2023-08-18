@@ -156,7 +156,7 @@ def report2txt(report):
     try:
         for file, data in report["checked_files"]["files"].items():
             # report.update({"checked_files": {"files": {file: {"uncovered_lines": coverage_intersection}}}})
-            out += f"{file}: {collect_uncovered_lines_2_txt(data['uncovered_lines'])}\n"
+            out += f"{file} {data['covered']%}: {collect_uncovered_lines_2_txt(data['uncovered_lines'])}\n"
     except:
         pass
 
@@ -258,7 +258,11 @@ def main() -> bool:
                 total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
-                report_files.update({file: {"uncovered_lines": sorted(coverage_intersection)}})
+                file_percentage = round(((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100)
+
+                report_files.update(
+                    {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
+                )
 
         report.update({"checked_files": {"count": checked_files_count, "files": report_files}})
         report.update({"skipped_files": {"count": skipped_files_count}})
