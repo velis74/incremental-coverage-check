@@ -144,6 +144,12 @@ def intersection(a, b) -> dict:
     return {}
 
 
+def report2txt(report):
+    out = "Coverage report:\n\n"
+
+    return out
+
+
 def main() -> bool:
     try:
         args = parse_args()
@@ -152,6 +158,7 @@ def main() -> bool:
         total_uncovered_lines = 0
         percentage = 0
         checked_files_nr = 0
+        report = dict()
 
         logging.basicConfig(level=getattr(logging, args.logging_level))
 
@@ -212,7 +219,7 @@ def main() -> bool:
             g = Github(auth=auth)
             repo = g.get_repo(args.repository)
             pr = repo.get_issue(int(args.issue))
-            comment = pr.create_comment("This is another comment")
+            comment = pr.create_comment(report2txt(report))
 
         if percentage < args.required_percentage and checked_files_nr > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
