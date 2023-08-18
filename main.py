@@ -212,7 +212,7 @@ def main() -> bool:
                 total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
-        report["skipped_files"]["count"] = skipped_files_count
+        report.update({"skipped_files": {"count": skipped_files_count}})
 
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
