@@ -149,7 +149,7 @@ def report2txt(report):
     out = "Coverage report:\n\n"
 
     out += f"Total changed lines: {report['total_changed_lines']['count']}\n"
-    out += f"Checked files:\n"
+    out += f"Checked files (only uncovered lines listed):\n"
 
     try:
         for file, data in report["checked_files"]["files"].items():
