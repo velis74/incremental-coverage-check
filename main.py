@@ -145,6 +145,7 @@ def intersection(a, b) -> dict:
 
 
 def report2txt(report):
+    logging.debug(f"Report: {report}")
     out = "Coverage report:\n"
 
     out += f"Total changed lines: {report['total_changed_lines']['count']}\n"
