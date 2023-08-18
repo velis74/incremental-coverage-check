@@ -145,9 +145,10 @@ def intersection(a, b) -> dict:
 
 
 def report2txt(report):
-    out = "Coverage report:\n\n"
+    out = "Coverage report:\n"
 
-    out += f"Skipped files: {report['skipped_files']['count']}"
+    out += f"Skipped files: {report['skipped_files']['count']}\n"
+    out += f"Checked files: {report['checked_files']['count']}\n"
 
     return out
 
@@ -159,7 +160,7 @@ def main() -> bool:
         total_changed_lines = 0
         total_uncovered_lines = 0
         percentage = 0
-        checked_files_nr = 0
+        checked_files_count = 0
         skipped_files_count = 0
         report = dict()
 
@@ -192,7 +193,7 @@ def main() -> bool:
                 logging.debug("Skipping...")
                 skipped_files_count += 1
             else:
-                checked_files_nr += 1
+                checked_files_count += 1
                 logging.debug("Getting file diff")
                 diff = get_file_diff(
                     args.current_branch,
@@ -212,12 +213,13 @@ def main() -> bool:
                 total_uncovered_lines += len(coverage_intersection)
                 logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
+        report.update({"checked_files": {"count": checked_files_count}})
         report.update({"skipped_files": {"count": skipped_files_count}})
 
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
 
-        if checked_files_nr > 0:
+        if checked_files_count > 0:
             logging.info(f"Total covered in changed lines: {percentage}%")
 
         if args.gh_token != "none":
@@ -227,7 +229,7 @@ def main() -> bool:
             pr = repo.get_issue(int(args.issue))
             comment = pr.create_comment(report2txt(report))
 
-        if percentage < args.required_percentage and checked_files_nr > 0:
+        if percentage < args.required_percentage and checked_files_count > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
             raise SystemExit("Failed")
         else:
