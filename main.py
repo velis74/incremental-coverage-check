@@ -276,7 +276,7 @@ def main() -> bool:
         if checked_files_count > 0:
             logging.info(f"Total covered in changed lines: {percentage}%")
 
-        if args.gh_token != "none" or args.issue != "none":
+        if args.gh_token != "none" and args.issue != "none":
             auth = Auth.Token(args.gh_token)
             g = Github(auth=auth)
             repo = g.get_repo(args.repository)
