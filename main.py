@@ -52,6 +52,7 @@ def parse_args() -> configargparse.ArgParser:
     )
     parser.add_argument("-w", "--working-dir", type=str, required=True, help="Working dir")
     parser.add_argument("-g", "--gh-token", type=str, default="none", help="Github token")
+    parser.add_argument("-r", "--repository", type=str, default="none", help="Repository")
 
     args, unknown = parser.parse_known_args()
     return args
@@ -208,10 +209,8 @@ def main() -> bool:
         if args.gh_token != "none":
             auth = Auth.Token(args.gh_token)
             g = Github(auth=auth)
-            repo = g.get_repo("velis74/incremental-coverage-check")
+            repo = g.get_repo(args.repository)
             pr = repo.get_issue(11)
-            # last_commit = pr.get_commits()[pr.commits - 1]
-            # comment = pr.create_comment("This is a comment", last_commit, "main.py", 212)
             comment = pr.create_comment("This is a comment")
 
         if percentage < args.required_percentage and checked_files_nr > 0:
