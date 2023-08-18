@@ -152,12 +152,12 @@ def report2txt(report):
     # out += f"Skipped files: {report['skipped_files']['count']}\n"
     out += f"Checked files: {report['checked_files']['count']}\n"
 
-    for file, data in report["checked_files"]["files"].items():
-        try:
+    try:
+        for file, data in report["checked_files"]["files"].items():
             # report.update({"checked_files": {"files": {file: {"uncovered_lines": coverage_intersection}}}})
             out += f"{file}: {data['uncovered_lines']}"
-        except:
-            pass
+    except:
+        pass
 
     return out
 
