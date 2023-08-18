@@ -149,8 +149,6 @@ def report2txt(report):
     out = "Coverage report:\n\n"
 
     out += f"Total changed lines: {report['total_changed_lines']['count']}\n"
-    # out += f"Skipped files: {report['skipped_files']['count']}\n"
-    # out += f"Checked files: {report['checked_files']['count']}\n"
     out += f"Checked files:\n"
 
     try:
