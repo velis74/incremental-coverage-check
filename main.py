@@ -53,6 +53,7 @@ def parse_args() -> configargparse.ArgParser:
     parser.add_argument("-w", "--working-dir", type=str, required=True, help="Working dir")
     parser.add_argument("-g", "--gh-token", type=str, default="none", help="Github token")
     parser.add_argument("-r", "--repository", type=str, default="none", help="Repository")
+    parser.add_argument("-i", "--issue", type=str, default="none", help="Issue nr")
 
     args, unknown = parser.parse_known_args()
     return args
@@ -210,7 +211,7 @@ def main() -> bool:
             auth = Auth.Token(args.gh_token)
             g = Github(auth=auth)
             repo = g.get_repo(args.repository)
-            pr = repo.get_issue(11)
+            pr = repo.get_issue(args.issue)
             comment = pr.create_comment("This is a comment")
 
         if percentage < args.required_percentage and checked_files_nr > 0:
