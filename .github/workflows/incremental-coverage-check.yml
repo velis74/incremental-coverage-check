@@ -30,7 +30,7 @@ jobs:
           py_coverage_json: coverage.json
           base_ref: ${{ github.base_ref }}
           head_ref: HEAD
-          rep_ref: main
+          rep_ref: wip
           logging_level: INFO
           gh_token: ${{ secrets.GITHUB_TOKEN }}
           pr_number: ${{github.event.pull_request.number}}

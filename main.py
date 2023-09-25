@@ -229,6 +229,10 @@ def main() -> bool:
                 parse_py_coverage_data(os.path.join(args.working_dir, args.py_coverage_json), args.working_dir)
             )
 
+        if len(args.files) == 0:
+            logging.info("No files checked.")
+            return True
+
         for file in args.files:
             file_path = os.path.join(args.working_dir, file)
             logging.debug(f"Working on file: {file_path}")
