@@ -292,6 +292,10 @@ def main() -> bool:
 
         if checked_files_count > 0:
             logging.info(f"Total covered in changed lines: {percentage}%")
+            logging.info(report2txt(report))
+        else:
+            logging.info("No files checked.")
+            return True
 
         if args.gh_token != "none" and args.issue != "none":
             auth = Auth.Token(args.gh_token)
@@ -303,9 +307,6 @@ def main() -> bool:
         if percentage < args.required_percentage and checked_files_count > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
             raise SystemExit("Failed")
-        else:
-            logging.info("No files checked.")
-            return True
 
     except Exception as e:
         raise SystemExit(e)
