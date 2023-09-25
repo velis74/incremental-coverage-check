@@ -253,18 +253,32 @@ def main() -> bool:
 
                 logging.debug(f"Intersection {changed_lines}, {coverage_data[file_path]['missing_lines']}")
                 coverage_intersection = intersection(changed_lines, coverage_data[file_path]["missing_lines"])
-                logging.debug(f"Coverage intersection: {sorted(coverage_intersection)}")
 
-                total_changed_lines += len(changed_lines)
-                logging.debug(f"Total changed lines {total_changed_lines}")
-                total_uncovered_lines += len(coverage_intersection)
-                logging.debug(f"Total uncovered lines {total_uncovered_lines}")
+                if len(coverage_intersection) == 0:
+                    logging.debug(f"All lines covered. Coverage intersection: {sorted(coverage_intersection)}")
+                    total_changed_lines += len(changed_lines)
+                    file_percentage = round(
+                        ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
+                    )
+                    report_files.update(
+                        {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
+                    )
 
-                file_percentage = round(((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100)
+                else:
+                    logging.debug(f"Coverage intersection: {sorted(coverage_intersection)}")
 
-                report_files.update(
-                    {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
-                )
+                    total_changed_lines += len(changed_lines)
+                    logging.debug(f"Total changed lines {total_changed_lines}")
+                    total_uncovered_lines += len(coverage_intersection)
+                    logging.debug(f"Total uncovered lines {total_uncovered_lines}")
+
+                    file_percentage = round(
+                        ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
+                    )
+
+                    report_files.update(
+                        {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
+                    )
 
         report.update({"checked_files": {"count": checked_files_count, "files": report_files}})
         report.update({"skipped_files": {"count": skipped_files_count}})
@@ -273,8 +287,15 @@ def main() -> bool:
         if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
             percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
 
+        if total_uncovered_lines == 0:
+            percentage = 100
+
         if checked_files_count > 0:
             logging.info(f"Total covered in changed lines: {percentage}%")
+            logging.info(report2txt(report))
+        else:
+            logging.info("No files checked.")
+            return True
 
         if args.gh_token != "none" and args.issue != "none":
             auth = Auth.Token(args.gh_token)
@@ -286,9 +307,6 @@ def main() -> bool:
         if percentage < args.required_percentage and checked_files_count > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
             raise SystemExit("Failed")
-        else:
-            logging.info("No files checked.")
-            return True
 
     except Exception as e:
         raise SystemExit(e)
