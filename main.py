@@ -299,6 +299,9 @@ def main() -> bool:
         if total_uncovered_lines == 0:
             percentage = 100
 
+        if total_uncovered_lines == 0:
+            percentage = 100
+
         if checked_files_count > 0:
             logging.info(f"Total covered in changed lines: {percentage}%")
             logging.info(report2txt(report))
