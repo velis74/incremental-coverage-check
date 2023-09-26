@@ -290,8 +290,11 @@ def main() -> bool:
         report.update({"skipped_files": {"count": skipped_files_count}})
         report.update({"total_changed_lines": {"count": total_changed_lines}})
 
-        if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
-            percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
+        try:
+            if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
+                percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
+        except ZeroDivisionError:
+            percentage = 1
 
         if total_uncovered_lines == 0:
             percentage = 100
