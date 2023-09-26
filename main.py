@@ -257,9 +257,12 @@ def main() -> bool:
                 if len(coverage_intersection) == 0:
                     logging.debug(f"All lines covered. Coverage intersection: {sorted(coverage_intersection)}")
                     total_changed_lines += len(changed_lines)
-                    file_percentage = round(
-                        ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
-                    )
+                    try:
+                        file_percentage = round(
+                            ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
+                        )
+                    except ZeroDivisionError:
+                        file_percentage = 100
                     report_files.update(
                         {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
                     )
@@ -272,9 +275,12 @@ def main() -> bool:
                     total_uncovered_lines += len(coverage_intersection)
                     logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
-                    file_percentage = round(
-                        ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
-                    )
+                    try:
+                        file_percentage = round(
+                            ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
+                        )
+                    except ZeroDivisionError:
+                        file_percentage = 1
 
                     report_files.update(
                         {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
