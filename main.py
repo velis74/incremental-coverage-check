@@ -257,9 +257,12 @@ def main() -> bool:
                 if len(coverage_intersection) == 0:
                     logging.debug(f"All lines covered. Coverage intersection: {sorted(coverage_intersection)}")
                     total_changed_lines += len(changed_lines)
-                    file_percentage = round(
-                        ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
-                    )
+                    try:
+                        file_percentage = round(
+                            ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
+                        )
+                    except ZeroDivisionError:
+                        file_percentage = 100
                     report_files.update(
                         {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
                     )
@@ -272,9 +275,12 @@ def main() -> bool:
                     total_uncovered_lines += len(coverage_intersection)
                     logging.debug(f"Total uncovered lines {total_uncovered_lines}")
 
-                    file_percentage = round(
-                        ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
-                    )
+                    try:
+                        file_percentage = round(
+                            ((len(changed_lines) - len(coverage_intersection)) / len(changed_lines)) * 100
+                        )
+                    except ZeroDivisionError:
+                        file_percentage = 1
 
                     report_files.update(
                         {file: {"uncovered_lines": sorted(coverage_intersection), "covered": file_percentage}}
@@ -284,8 +290,14 @@ def main() -> bool:
         report.update({"skipped_files": {"count": skipped_files_count}})
         report.update({"total_changed_lines": {"count": total_changed_lines}})
 
-        if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
-            percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
+        try:
+            if total_uncovered_lines > 0 and total_changed_lines > 0 and total_uncovered_lines < total_changed_lines:
+                percentage = round(((total_changed_lines - total_uncovered_lines) / total_changed_lines) * 100)
+        except ZeroDivisionError:
+            percentage = 1
+
+        if total_uncovered_lines == 0:
+            percentage = 100
 
         if total_uncovered_lines == 0:
             percentage = 100
