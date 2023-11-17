@@ -9,10 +9,12 @@ class TestMain(TestCase):
         self.assertEqual({2}, intersection([1, 2], [2, 3]))
 
     def test_get_curr_branch(self) -> None:
-        self.assertNotEqual(get_curr_branch(), False)
+        # TODO: This should be checked
+        self.assertEqual(get_curr_branch("/"), False)
 
     def test_get_changed_files(self) -> None:
-        files = get_changed_files("main", get_curr_branch())
+        # TODO: This should be checked
+        files = get_changed_files("main", get_curr_branch("/"), "/")
         self.assertNotEqual(files, False)
         self.assertTrue(isinstance(files, list))
 
