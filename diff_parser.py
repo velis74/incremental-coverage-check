@@ -18,7 +18,7 @@ class DiffParser:
         return_value = False
         diff = self.diff.split("\n")
 
-        if type(diff) is list and len(diff) > 2:
+        if isinstance(diff, list) and len(diff) > 2:
             return_value = True
 
         if diff[0][0:4] == "diff":
@@ -38,7 +38,7 @@ class DiffParser:
             raise ValueError("Invalid git diff chunk format")
 
         # Extract the starting line numbers from the header
-        starting_line_in_old_file = int(header_match.group(1))
+        # TODO: not used? starting_line_in_old_file = int(header_match.group(1))
         starting_line_in_new_file = int(header_match.group(2))
 
         return starting_line_in_new_file

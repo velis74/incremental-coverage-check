@@ -2,3 +2,4 @@ ConfigArgParse
 coverage
 black[d]
 PyGithub
+ruff

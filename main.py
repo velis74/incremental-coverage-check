@@ -149,7 +149,7 @@ def report2txt(report):
     out = "Coverage report:\n\n"
 
     out += f"Total changed lines: {report['total_changed_lines']['count']}\n"
-    out += f"Checked files (only uncovered lines listed):\n"
+    out += "Checked files (only uncovered lines listed):\n"
 
     try:
         for file, data in report["checked_files"]["files"].items():
@@ -159,8 +159,10 @@ def report2txt(report):
             if txt_uncovered_lines == "0":
                 txt_uncovered_lines = ""
             out += f"{file} ({data['covered']}%): {txt_uncovered_lines}\n"
-    except:
-        pass
+    except TypeError as e:
+        logging.debug(f"TypeError {e}")
+    except Exception as e:
+        logging.debug(f"Exception {e}")
 
     return out
 
@@ -315,6 +317,7 @@ def main() -> bool:
             repo = g.get_repo(args.repository)
             pr = repo.get_issue(int(args.issue))
             comment = pr.create_comment(report2txt(report))
+            logging.debug(f"Comment created: {comment}")
 
         if percentage < args.required_percentage and checked_files_count > 0:
             logging.info(f"Commit is not covered at least {args.required_percentage}%. Coverage FAILED.")
