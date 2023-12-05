@@ -201,7 +201,7 @@ def collect_uncovered_lines_2_txt(data):
 
 def is_ignored(file) -> bool:
     ignored_suffixes = ["md", "py", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules"]
-    ignored_prefixes = [".", "__"]
+    ignored_prefixes = ["."]
     ignored_files = ["LICENSE", "README.md", "CHANGELOG.md", "CONTRIBUTING.md", "PULL_REQUEST_TEMPLATE.md"]
 
     if file in ignored_files:
