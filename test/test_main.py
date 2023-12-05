@@ -1,5 +1,6 @@
 from unittest import TestCase
-from main import get_changed_files, get_curr_branch, intersection, collect_uncovered_lines_2_txt
+
+from main import collect_uncovered_lines_2_txt, get_changed_files, get_curr_branch, intersection
 
 
 class TestMain(TestCase):
