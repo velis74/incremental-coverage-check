@@ -218,7 +218,9 @@ def is_ignored(file, path=None) -> bool:
     ignored_files = ["LICENSE", "README.md", "CHANGELOG.md", "CONTRIBUTING.md", "PULL_REQUEST_TEMPLATE.md"]
     ignored_folders = ["/migrations/"]
 
-    if file in ignored_files:
+    _file = file.split("/")[-1]
+
+    if _file in ignored_files:
         return True
 
     for suffix in ignored_suffixes:
@@ -226,17 +228,13 @@ def is_ignored(file, path=None) -> bool:
             return True
 
     for prefix in ignored_prefixes:
-        if file.startswith(prefix):
+        if _file.startswith(prefix):
             return True
 
     if path is not None:
         for folder in ignored_folders:
-            if path.count(folder) > 0:
+            if os.join(path, file).count(folder) > 0:
                 return True
-
-    for folder in ignored_folders:
-        if file.count(folder) > 0:
-            return True
 
     return False
 
