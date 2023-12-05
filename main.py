@@ -262,6 +262,12 @@ def main() -> bool:
                     skipped_files_count += 1
                 else:
                     logging.debug("File is not ignored. Marking as uncovered.")
+                    _uncovered_lines = []
+                    with open(file_path, "r") as fp:
+                        lines = fp.readlines()
+                        for line in range(len(lines)):
+                            _uncovered_lines.append(line + 1)
+
                     report_files.update({file: {"uncovered_lines": [], "covered": 0}})
                     checked_files_count += 1
             else:
