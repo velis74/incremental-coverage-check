@@ -30,8 +30,8 @@ jobs:
           py_coverage_json: coverage.json
           base_ref: ${{ github.base_ref }}
           head_ref: HEAD
-          rep_ref: 754-mark-files-as-unchecked-if-not-in-coverage
-          logging_level: DEBUG
+          rep_ref: main
+          logging_level: INFO
           gh_token: ${{ secrets.GITHUB_TOKEN }}
           pr_number: ${{github.event.pull_request.number}}
         if: github.event_name == 'pull_request'
@@ -42,7 +42,7 @@ jobs:
           py_coverage_json: coverage.json
           base_ref: ${{ github.event.before }}
           head_ref: HEAD
-          rep_ref: 754-mark-files-as-unchecked-if-not-in-coverage
-          logging_level: DEBUG
+          rep_ref: main
+          logging_level: INFO
           gh_token: ${{ secrets.GITHUB_TOKEN }}
         if: github.event_name == 'push'
