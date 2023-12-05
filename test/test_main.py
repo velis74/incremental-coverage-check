@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from main import collect_uncovered_lines_2_txt, get_changed_files, get_curr_branch, intersection
+from main import collect_uncovered_lines_2_txt, get_changed_files, get_curr_branch, intersection, is_ignored
 
 
 class TestMain(TestCase):
@@ -25,3 +25,6 @@ class TestMain(TestCase):
         self.assertEqual(
             "1-3, 5, 8, 12-17, 22", collect_uncovered_lines_2_txt({1, 2, 3, 5, 8, 12, 13, 14, 15, 16, 17, 22})
         )
+
+    def test_is_ignored(self) -> None:
+        self.assertEqual(False, is_ignored("test/test_main.py"))
