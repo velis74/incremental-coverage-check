@@ -31,3 +31,4 @@ class TestMain(TestCase):
         self.assertTrue(is_ignored("LICENSE"))
         self.assertTrue(is_ignored("README.md"))
         self.assertTrue(is_ignored("main.pyc"))
+        self.assertTrue(is_ignored(".gitignore"))
