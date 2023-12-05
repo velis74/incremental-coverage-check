@@ -1,4 +1,5 @@
 import os
+
 from unittest import TestCase
 
 from diff_parser import DiffParser

@@ -1,16 +1,15 @@
 import json
-import os.path
-
-import configargparse
-from configargparse import RawTextHelpFormatter
-import subprocess
-from diff_parser import DiffParser
-
 import logging
 import logging.handlers
+import os.path
+import subprocess
 
-from github import Github
-from github import Auth
+import configargparse
+
+from configargparse import RawTextHelpFormatter
+from github import Auth, Github
+
+from diff_parser import DiffParser
 
 
 def parse_args() -> configargparse.ArgParser:
