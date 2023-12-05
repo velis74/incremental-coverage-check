@@ -208,6 +208,7 @@ def get_all_lines_from_file(file_path):
                 _uncovered_lines.append(line + 1)
     except Exception as e:
         logging.debug(f"Cannot open file {e}")
+        _uncovered_lines = [1]
     return _uncovered_lines
 
 
@@ -275,7 +276,10 @@ def main() -> bool:
                 else:
                     logging.debug("File is not ignored. Marking as uncovered.")
 
-                    report_files.update({file: {"uncovered_lines": get_all_lines_from_file(file_path), "covered": 1}})
+                    lines_from_file = get_all_lines_from_file(file_path)
+                    report_files.update({file: {"uncovered_lines": lines_from_file, "covered": 1}})
+                    total_changed_lines += len(lines_from_file)
+                    total_uncovered_lines += len(lines_from_file)
                     checked_files_count += 1
             else:
                 checked_files_count += 1
