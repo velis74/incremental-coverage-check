@@ -234,6 +234,10 @@ def is_ignored(file, path=None) -> bool:
             if path.count(folder) > 0:
                 return True
 
+    for folder in ignored_folders:
+        if file.count(folder) > 0:
+            return True
+
     return False
 
 
