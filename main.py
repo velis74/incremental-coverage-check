@@ -212,10 +212,11 @@ def get_all_lines_from_file(file_path):
     return _uncovered_lines
 
 
-def is_ignored(file) -> bool:
+def is_ignored(file, path=None) -> bool:
     ignored_suffixes = ["md", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules"]
     ignored_prefixes = [".", "test_"]
     ignored_files = ["LICENSE", "README.md", "CHANGELOG.md", "CONTRIBUTING.md", "PULL_REQUEST_TEMPLATE.md"]
+    ignored_folders = ["/migrations/"]
 
     if file in ignored_files:
         return True
@@ -227,6 +228,11 @@ def is_ignored(file) -> bool:
     for prefix in ignored_prefixes:
         if file.startswith(prefix):
             return True
+
+    if path is not None:
+        for folder in ignored_folders:
+            if path.count(folder) > 0:
+                return True
 
     return False
 
@@ -270,7 +276,7 @@ def main() -> bool:
 
             if file_data is None:
                 logging.debug("File is not in coverage. ")
-                if is_ignored(file):
+                if is_ignored(file, args.working_dir):
                     logging.debug("File is ignored. ")
                     skipped_files_count += 1
                 else:

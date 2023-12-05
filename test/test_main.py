@@ -32,3 +32,5 @@ class TestMain(TestCase):
         self.assertTrue(is_ignored("README.md"))
         self.assertTrue(is_ignored("main.pyc"))
         self.assertTrue(is_ignored(".gitignore"))
+        self.assertTrue(is_ignored("test_basic.py"))
+        self.assertTrue(is_ignored("test_basic.py", ("/abc/migrations/0001_initial.py",)))
