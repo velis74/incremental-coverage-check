@@ -272,7 +272,7 @@ def main() -> bool:
                 else:
                     logging.debug("File is not ignored. Marking as uncovered.")
 
-                    report_files.update({file: {"uncovered_lines": get_all_lines_from_file(file_path), "covered": 0}})
+                    report_files.update({file: {"uncovered_lines": get_all_lines_from_file(file_path), "covered": 1}})
                     checked_files_count += 1
             else:
                 checked_files_count += 1
