@@ -238,8 +238,9 @@ def main() -> bool:
             file_data = coverage_data.get(file_path, None)
 
             if file_data is None:
-                logging.debug("Skipping...")
-                skipped_files_count += 1
+                logging.debug("File is not in coverage. Marking file as unchecked.")
+                report_files.update({file: {"uncovered_lines": [], "covered": 0}})
+                # skipped_files_count += 1
             else:
                 checked_files_count += 1
                 logging.debug("Getting file diff")
