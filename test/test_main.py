@@ -28,3 +28,4 @@ class TestMain(TestCase):
 
     def test_is_ignored(self) -> None:
         self.assertEqual(False, is_ignored("test/test_main.py"))
+        self.assertEqual(True, is_ignored("LICENSE"))
