@@ -199,6 +199,15 @@ def collect_uncovered_lines_2_txt(data):
     return out
 
 
+def get_all_lines_from_file(file_path):
+    _uncovered_lines = []
+    with open(file_path, "r") as fp:
+        lines = fp.readlines()
+        for line in range(len(lines)):
+            _uncovered_lines.append(line + 1)
+    return _uncovered_lines
+
+
 def is_ignored(file) -> bool:
     ignored_suffixes = ["md", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules"]
     ignored_prefixes = ["."]
@@ -262,13 +271,8 @@ def main() -> bool:
                     skipped_files_count += 1
                 else:
                     logging.debug("File is not ignored. Marking as uncovered.")
-                    _uncovered_lines = []
-                    with open(file_path, "r") as fp:
-                        lines = fp.readlines()
-                        for line in range(len(lines)):
-                            _uncovered_lines.append(line + 1)
 
-                    report_files.update({file: {"uncovered_lines": [], "covered": 0}})
+                    report_files.update({file: {"uncovered_lines": get_all_lines_from_file(file_path), "covered": 0}})
                     checked_files_count += 1
             else:
                 checked_files_count += 1
