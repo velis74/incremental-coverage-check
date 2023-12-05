@@ -201,10 +201,13 @@ def collect_uncovered_lines_2_txt(data):
 
 def get_all_lines_from_file(file_path):
     _uncovered_lines = []
-    with open(file_path, "r") as fp:
-        lines = fp.readlines()
-        for line in range(len(lines)):
-            _uncovered_lines.append(line + 1)
+    try:
+        with open(file_path, "r") as fp:
+            lines = fp.readlines()
+            for line in range(len(lines)):
+                _uncovered_lines.append(line + 1)
+    except Exception as e:
+        logging.debug(f"Cannot open file {e}")
     return _uncovered_lines
 
 
