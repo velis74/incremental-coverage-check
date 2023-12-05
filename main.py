@@ -199,6 +199,25 @@ def collect_uncovered_lines_2_txt(data):
     return out
 
 
+def is_ignored(file) -> bool:
+    ignored_suffixes = ["md", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules"]
+    ignored_prefixes = ["."]
+    ignored_files = ["LICENSE", "README.md", "CHANGELOG.md", "CONTRIBUTING.md", "PULL_REQUEST_TEMPLATE.md"]
+
+    if file in ignored_files:
+        return True
+
+    for suffix in ignored_suffixes:
+        if file.endswith(suffix):
+            return True
+
+    for prefix in ignored_prefixes:
+        if file.startswith(prefix):
+            return True
+
+    return False
+
+
 def main() -> bool:
     try:
         args = parse_args()
@@ -237,8 +256,14 @@ def main() -> bool:
             file_data = coverage_data.get(file_path, None)
 
             if file_data is None:
-                logging.debug("Skipping...")
-                skipped_files_count += 1
+                logging.debug("File is not in coverage. ")
+                if is_ignored(file):
+                    logging.debug("File is ignored. ")
+                    skipped_files_count += 1
+                else:
+                    logging.debug("File is not ignored. Marking as uncovered.")
+                    report_files.update({file: {"uncovered_lines": [], "covered": 0}})
+                    checked_files_count += 1
             else:
                 checked_files_count += 1
                 logging.debug("Getting file diff")
