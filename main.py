@@ -233,7 +233,7 @@ def is_ignored(file, path=None) -> bool:
 
     if path is not None:
         for folder in ignored_folders:
-            if os.join(path, file).count(folder) > 0:
+            if os.path.join(path, file).count(folder) > 0:
                 return True
 
     return False

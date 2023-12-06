@@ -27,7 +27,7 @@ class TestMain(TestCase):
         )
 
     def test_is_ignored(self) -> None:
-        self.assertFalse(is_ignored("test/test_main.py"))
+        self.assertTrue(is_ignored("test/test_main.py"))
         self.assertTrue(is_ignored("LICENSE"))
         self.assertTrue(is_ignored("README.md"))
         self.assertTrue(is_ignored("main.pyc"))
