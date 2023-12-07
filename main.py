@@ -215,7 +215,7 @@ def get_all_lines_from_file(file_path):
 def is_ignored(file, path=None) -> bool:
     ignored_suffixes = ["md", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules", "yml"]
     ignored_prefixes = [".", "test_", ".github"]
-    ignored_files = ["LICENSE", "README.md", "CHANGELOG.md", "CONTRIBUTING.md", "PULL_REQUEST_TEMPLATE.md"]
+    ignored_files = ["LICENSE", "README.md", "CHANGELOG.md", "CONTRIBUTING.md", "PULL_REQUEST_TEMPLATE.md", "setup.py"]
     ignored_folders = ["/migrations/"]
 
     _file = file.split("/")[-1]
