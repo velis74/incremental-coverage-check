@@ -212,8 +212,8 @@ def get_all_lines_from_file(file_path):
 
 
 def is_ignored(file, path=None) -> bool:
-    ignored_suffixes = ["md", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules", "yml"]
-    ignored_prefixes = [".", "test_", ".github"]
+    ignored_suffixes = ["md", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules", "yml", "spec.ts"]
+    ignored_prefixes = [".", "test_"]
     ignored_files = [
         "LICENSE",
         "README.md",
@@ -222,6 +222,7 @@ def is_ignored(file, path=None) -> bool:
         "PULL_REQUEST_TEMPLATE.md",
         "setup.py",
         "settings.py",
+        ".github",
     ]
     ignored_folders = ["/migrations/"]
 
