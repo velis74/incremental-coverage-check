@@ -209,6 +209,8 @@ def get_all_lines_from_file(file_path):
     except Exception as e:
         logging.debug(f"Cannot open file {e}")
     return _uncovered_lines
+
+
 def get_changed_lines_from_diff(args, file):
     logging.debug("Getting file diff")
     diff = get_file_diff(
@@ -220,6 +222,7 @@ def get_changed_lines_from_diff(args, file):
     parser = DiffParser(diff)
     changed_lines = parser.parse()
     return changed_lines
+
 
 def is_ignored(file, path=None) -> bool:
     ignored_suffixes = ["md", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules", "yml", "spec.ts"]
