@@ -209,7 +209,17 @@ def get_all_lines_from_file(file_path):
     except Exception as e:
         logging.debug(f"Cannot open file {e}")
     return _uncovered_lines
-
+def get_changed_lines_from_diff(args, file):
+    logging.debug("Getting file diff")
+    diff = get_file_diff(
+            args.current_branch,
+            args.branch,
+            args.working_dir,
+            os.path.join(args.working_dir, file),
+    )
+    parser = DiffParser(diff)
+    changed_lines = parser.parse()
+    return changed_lines
 
 def is_ignored(file, path=None) -> bool:
     ignored_suffixes = ["md", "pyc", "pyo", "txt", "json", "gitignore", "gitattributes", "gitmodules", "yml", "spec.ts"]
@@ -294,7 +304,8 @@ def main() -> bool:
 
                     lines_from_file = get_all_lines_from_file(file_path)
                     if lines_from_file:
-                        report_files.update({file: {"uncovered_lines": lines_from_file, "covered": 1}})
+                        changed_lines = get_changed_lines_from_diff(args, file)
+                        report_files.update({file: {"uncovered_lines": changed_lines, "covered": 1}})
                         total_changed_lines += len(lines_from_file)
                         total_uncovered_lines += len(lines_from_file)
                         checked_files_count += 1
@@ -302,15 +313,7 @@ def main() -> bool:
                         skipped_files_count += 1
             else:
                 checked_files_count += 1
-                logging.debug("Getting file diff")
-                diff = get_file_diff(
-                    args.current_branch,
-                    args.branch,
-                    args.working_dir,
-                    os.path.join(args.working_dir, file),
-                )
-                parser = DiffParser(diff)
-                changed_lines = parser.parse()
+                changed_lines = get_changed_lines_from_diff(args, file)
                 logging.debug(f"Changed lines {len(changed_lines)}")
 
                 logging.debug(f"Intersection {changed_lines}, {coverage_data[file_path]['missing_lines']}")
@@ -385,6 +388,9 @@ def main() -> bool:
 
     except Exception as e:
         raise SystemExit(e)
+
+
+
 
 
 if __name__ == "__main__":

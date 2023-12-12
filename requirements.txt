@@ -3,3 +3,4 @@ coverage
 black[d]
 PyGithub
 ruff
+ruff-lsp
