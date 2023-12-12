@@ -15,4 +15,7 @@ def add_two(a: int, b: int) -> int:
     return a+b
 
 
+def add_three(a: int, b: int, c: int) -> int:
+    """pa še en komentar"""
+    return a + b + c
 
