@@ -1,3 +1,4 @@
+import logging
 import re
 
 
@@ -46,25 +47,29 @@ class DiffParser:
     def parse(self):
         changed_lines = []
 
-        lines = self.diff.split("\n")
-        file_line_nr = 0
-        for line in lines:
-            file_line_nr += 1
-            if line[0:4] == "diff":
-                pass
-            elif line[0:5] == "index":
-                pass
-            elif line[0:3] == "---":
-                pass
-            elif line[0:3] == "+++":
-                pass
-            elif line[0:2] == "@@":
-                file_line_nr = self.parse_header(line) - 1
-            elif line[0:1] == " ":
-                pass
-            elif line[0:1] == "+":
-                changed_lines.append(file_line_nr)
-            elif line[0:1] == "-":
-                file_line_nr -= 1
-
+        try:
+            lines = self.diff.split("\n")
+            file_line_nr = 0
+            for line in lines:
+                file_line_nr += 1
+                if line[0:4] == "diff":
+                    pass
+                elif line[0:5] == "index":
+                    pass
+                elif line[0:3] == "---":
+                    pass
+                elif line[0:3] == "+++":
+                    pass
+                elif line[0:2] == "@@":
+                    file_line_nr = self.parse_header(line) - 1
+                elif line[0:1] == " ":
+                    pass
+                elif line[0:1] == "+":
+                    changed_lines.append(file_line_nr)
+                elif line[0:1] == "-":
+                    file_line_nr -= 1
+        except Exception as e:
+            logging.debug(e)
+            changed_lines = []
+            
         return changed_lines
