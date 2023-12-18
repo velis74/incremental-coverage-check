@@ -249,6 +249,7 @@ def is_ignored(file, path=None) -> bool:
         "settings.py",
         "manage.py",
         ".github",
+        "tests.py",
     ]
     ignored_folders = ["migrations"]
 
