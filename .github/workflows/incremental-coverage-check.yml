@@ -30,8 +30,8 @@ jobs:
           py_coverage_json: coverage.json
           base_ref: ${{ github.base_ref }}
           head_ref: HEAD
-          rep_ref: main
-          logging_level: INFO
+          rep_ref: test_tests
+          logging_level: DEBUG
           gh_token: ${{ secrets.GITHUB_TOKEN }}
           pr_number: ${{github.event.pull_request.number}}
         if: github.event_name == 'pull_request'
