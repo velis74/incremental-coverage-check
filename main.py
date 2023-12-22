@@ -230,6 +230,7 @@ def is_ignored(file, path=None) -> bool:
         "pyc",
         "pyo",
         "txt",
+        "ini",
         "json",
         "gitignore",
         "gitattributes",
