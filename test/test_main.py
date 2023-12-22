@@ -36,3 +36,4 @@ class TestMain(TestCase):
         self.assertTrue(is_ignored("test_basic.py", "/abc/migrations/0001_initial.py"))
         self.assertTrue(is_ignored("0001_initial.py", "/abc/migrations"))
         self.assertTrue(is_ignored("tests.py", "some_module"))
+        self.assertTrue(is_ignored("one_file.py", "some_module/migrations/"))
