@@ -3,7 +3,9 @@
 import json
 import os
 
+from io import StringIO
 from unittest import TestCase
+from unittest.mock import patch
 
 from incremental_coverage.cli import (
     _comment_target,
@@ -45,6 +47,10 @@ def coverage_json(covered, missing, filename="calc.py"):
 
 class CliTestCase(TestCase):
     def setUp(self) -> None:
+        patcher = patch("sys.stdout", new_callable=StringIO)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
         self.repo = TemporaryRepository()
         self.addCleanup(self.repo.cleanup)
         self.repo.commit("base", {"calc.py": BASE_SOURCE})
@@ -155,6 +161,10 @@ class TestDualEnvironment(TestCase):
     """A Python backend and a TypeScript frontend graded in one run."""
 
     def setUp(self) -> None:
+        patcher = patch("sys.stdout", new_callable=StringIO)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
         self.repo = TemporaryRepository()
         self.addCleanup(self.repo.cleanup)
         self.repo.commit("base", {"backend/calc.py": BASE_SOURCE, "vue/src/table.ts": "export const a = 1;\n"})
@@ -274,6 +284,10 @@ class TestMonorepoFailsClosed(TestCase):
     """A same-named file in a sibling package must not lend it its coverage."""
 
     def setUp(self) -> None:
+        patcher = patch("sys.stdout", new_callable=StringIO)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
         self.repo = TemporaryRepository()
         self.addCleanup(self.repo.cleanup)
         self.repo.commit(
