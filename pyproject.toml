@@ -30,8 +30,8 @@ dependencies = []
 # supports, so the 3.9 leg of the test matrix gets the last release that runs there.
 # The reports the two produce are interchangeable.
 dev = [
-    "coverage==7.15.4; python_version >= '3.10'",
-    "coverage==7.10.7; python_version < '3.10'",
+    "coverage[toml]==7.15.4; python_version >= '3.10'",
+    "coverage[toml]==7.10.7; python_version < '3.10'",
     "ruff==0.3.0",
 ]
 
