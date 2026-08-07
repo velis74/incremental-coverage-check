@@ -16,7 +16,7 @@ import os
 from dataclasses import dataclass
 from typing import List, Optional
 
-from . import MARKER
+from . import __version__, MARKER
 from .analysis import group_skipped, Report, Status
 from .lines import format_ranges, to_ranges
 
@@ -387,7 +387,7 @@ def _markdown_warnings(report: Report) -> List[str]:
 
 def _markdown_footer(report: Report) -> List[str]:
     sources = " · ".join(report.sources) if report.sources else "no coverage reports"
-    return ["", f"<sub>Coverage reports: {sources} — incremental-coverage-check</sub>"]
+    return ["", f"<sub>Coverage reports: {sources} — incremental-coverage-check v{__version__}</sub>"]
 
 
 # --------------------------------------------------------------------------- #

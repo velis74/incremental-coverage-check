@@ -15,12 +15,12 @@ import urllib.request
 
 from typing import Dict, Iterable, List, Optional, Tuple
 
-from . import MARKER
+from . import __version__, MARKER
 
 logger = logging.getLogger(__name__)
 
 API_VERSION = "2022-11-28"
-USER_AGENT = "incremental-coverage-check"
+USER_AGENT = f"incremental-coverage-check/{__version__}"
 
 
 def in_actions() -> bool:

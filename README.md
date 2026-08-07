@@ -88,7 +88,7 @@ jobs:
           coverage json
 
       - name: Incremental coverage check
-        uses: velis74/incremental-coverage-check@v2
+        uses: velis74/incremental-coverage-check@v3
         with:
           coverage-files: coverage.json
           threshold: "80"
@@ -133,7 +133,7 @@ jobs:
         working-directory: vue
 
       # ---- One report over both --------------------------------------------
-      - uses: velis74/incremental-coverage-check@v2
+      - uses: velis74/incremental-coverage-check@v3
         with:
           coverage-files: |
             coverage.json
@@ -297,7 +297,7 @@ check never quietly drops something.
 
 ```yaml
 - id: coverage
-  uses: velis74/incremental-coverage-check@v2
+  uses: velis74/incremental-coverage-check@v3
   with:
     coverage-files: coverage.json
 
