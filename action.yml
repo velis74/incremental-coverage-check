@@ -1,47 +1,183 @@
 name: "Incremental coverage check"
-description: "Incremental coverage check"
+description: >-
+  Fail a pull request when the lines it changes are not covered by tests.
+  Understands coverage.py JSON, Cobertura XML, istanbul JSON, Clover XML and LCOV,
+  so a Python backend and a TypeScript frontend can be graded in a single report.
 author: "Velis"
+
+branding:
+  icon: "shield"
+  color: "green"
+
 inputs:
-  clover_coverage_json:
-    description: "Clover coverage json"
-    default: "none"
-  py_coverage_json:
-    description: "Python coverage json"
-    default: "none"
-  logging_level:
-    description: "Loging level"
+  coverage-files:
+    description: >-
+      Coverage reports to read, newline- or comma-separated. Glob patterns are
+      allowed. The format of each file is detected from its content, so Python and
+      JavaScript reports can be mixed freely.
+    required: false
+    default: ""
+  threshold:
+    description: "Minimum percentage of changed, executable lines that must be covered."
+    required: false
+    default: "70"
+  base-ref:
+    description: >-
+      Revision the change is measured against. Defaults to the pull request base
+      branch, or to the previous commit on a push.
+    required: false
+    default: ""
+  head-ref:
+    description: "Revision under test."
+    required: false
+    default: "HEAD"
+  working-directory:
+    description: "Repository checkout to inspect. Defaults to the workspace."
+    required: false
+    default: ""
+  ignore-patterns:
+    description: >-
+      Replace the built-in ignore globs (tests, migrations, settings, generated
+      code). Newline- or comma-separated.
+    required: false
+    default: ""
+  extra-ignore-patterns:
+    description: "Additional ignore globs, kept alongside the built-in ones."
+    required: false
+    default: ""
+  source-extensions:
+    description: "Replace the list of file extensions treated as source code."
+    required: false
+    default: ""
+  threshold-fails-build:
+    description: "Set to false to report coverage without failing the job."
+    required: false
+    default: "true"
+  comment:
+    description: >-
+      Post the report as a comment: auto (only when there is a problem), always or
+      never. On a pull request the comment goes on the pull request; on a push it goes
+      on the pushed commit. Either way there is one comment, updated in place.
+    required: false
+    default: "auto"
+  commit-comments:
+    description: >-
+      Comment on the pushed commit when there is no pull request. Needs
+      `contents: write`. Set to false to keep the report to pull requests only.
+    required: false
+    default: "true"
+  annotations:
+    description: "Annotate uncovered lines in the Files changed tab."
+    required: false
+    default: "true"
+  job-summary:
+    description: "Write the report to the job summary."
+    required: false
+    default: "true"
+  github-token:
+    description: >-
+      Token used to post the comment. Needs `pull-requests: write` for pull requests
+      and `contents: write` for commit comments.
+    required: false
+    default: ""
+  pr-number:
+    description: "Pull request to comment on. Detected automatically for pull_request events."
+    required: false
+    default: ""
+  log-level:
+    description: "DEBUG, INFO, WARNING or ERROR."
+    required: false
     default: "INFO"
+
+  # ---------------------------------------------------------------------------
+  # Deprecated aliases, kept so existing workflows keep working.
+  # ---------------------------------------------------------------------------
+  py_coverage_json:
+    description: "DEPRECATED - use coverage-files."
+    required: false
+    default: ""
+  clover_coverage_json:
+    description: "DEPRECATED - use coverage-files."
+    required: false
+    default: ""
   base_ref:
-    description: Base branch
-    defaut: $GITHUB_BASE_REF
+    description: "DEPRECATED - use base-ref."
+    required: false
+    default: ""
   head_ref:
-    description: Base branch
-    defaut: "HEAD"
-  tool_repository:
-    description: Tool repository
-    default: "velis74/incremental-coverage-check"
-  rep_ref:
-    description: Repository branch
-    default: "main"
+    description: "DEPRECATED - use head-ref."
+    required: false
+    default: ""
   gh_token:
-    description: Github token
-    default: "none"
+    description: "DEPRECATED - use github-token."
+    required: false
+    default: ""
   pr_number:
-    description:  PR Number
-    default: "none"
+    description: "DEPRECATED - use pr-number."
+    required: false
+    default: ""
+  logging_level:
+    description: "DEPRECATED - use log-level."
+    required: false
+    default: ""
+
+outputs:
+  coverage:
+    description: "Percentage of changed executable lines that are covered."
+    value: ${{ steps.incremental-coverage.outputs.coverage }}
+  changed-lines:
+    description: "Number of changed lines that were graded."
+    value: ${{ steps.incremental-coverage.outputs.changed-lines }}
+  covered-lines:
+    description: "Number of graded lines that are covered."
+    value: ${{ steps.incremental-coverage.outputs.covered-lines }}
+  uncovered-lines:
+    description: "Number of graded lines that are not covered."
+    value: ${{ steps.incremental-coverage.outputs.uncovered-lines }}
+  files-checked:
+    description: "Number of files that were graded."
+    value: ${{ steps.incremental-coverage.outputs.files-checked }}
+  files-skipped:
+    description: "Number of changed files that were not graded."
+    value: ${{ steps.incremental-coverage.outputs.files-skipped }}
+  passed:
+    description: "true when the threshold was met."
+    value: ${{ steps.incremental-coverage.outputs.passed }}
+  markdown:
+    description: "The report as Markdown."
+    value: ${{ steps.incremental-coverage.outputs.markdown }}
+
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ inputs.rep_ref }}
-        repository: ${{ inputs.tool_repository }}
-        path: icc
-    - run: pip3 install -r icc/requirements.txt
+    - id: incremental-coverage
       shell: bash
-    - run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
-      shell: bash
-    - name: Run coverage check
-      run: python3 icc/main.py -w ${{ github.workspace }} -c ${{ inputs.head_ref }}  -b ${{ inputs.base_ref }} --clover-coverage-json ${{ inputs.clover_coverage_json }} --py-coverage-json ${{ inputs.py_coverage_json }} -l ${{ inputs.logging_level }} --gh-token ${{ inputs.gh_token }} -r ${{ github.repository }} -i ${{ inputs.pr_number }}
-      shell: bash
-
+      # Every input is passed through the environment rather than interpolated into
+      # the command line, so no input can be parsed as shell.
+      env:
+        ICC_COVERAGE_FILES: ${{ inputs.coverage-files }}
+        ICC_PY_COVERAGE_JSON: ${{ inputs.py_coverage_json }}
+        ICC_CLOVER_COVERAGE_JSON: ${{ inputs.clover_coverage_json }}
+        ICC_THRESHOLD: ${{ inputs.threshold }}
+        ICC_BASE_REF: ${{ inputs.base-ref || inputs.base_ref || github.base_ref || github.event.before }}
+        ICC_HEAD_REF: ${{ inputs.head-ref || inputs.head_ref }}
+        ICC_WORKING_DIRECTORY: ${{ inputs.working-directory || github.workspace }}
+        ICC_IGNORE_PATTERNS: ${{ inputs.ignore-patterns }}
+        ICC_EXTRA_IGNORE_PATTERNS: ${{ inputs.extra-ignore-patterns }}
+        ICC_SOURCE_EXTENSIONS: ${{ inputs.source-extensions }}
+        ICC_THRESHOLD_FAILS_BUILD: ${{ inputs.threshold-fails-build }}
+        ICC_COMMENT: ${{ inputs.comment }}
+        ICC_COMMIT_COMMENTS: ${{ inputs.commit-comments }}
+        ICC_ANNOTATIONS: ${{ inputs.annotations }}
+        ICC_JOB_SUMMARY: ${{ inputs.job-summary }}
+        ICC_GITHUB_TOKEN: ${{ inputs.github-token || inputs.gh_token || github.token }}
+        ICC_PR_NUMBER: ${{ inputs.pr-number || inputs.pr_number || github.event.pull_request.number }}
+        ICC_REPOSITORY: ${{ github.repository }}
+        ICC_LOG_LEVEL: ${{ inputs.log-level || inputs.logging_level }}
+      run: |
+        set -euo pipefail
+        if ! command -v python3 >/dev/null 2>&1; then
+          echo "::error::python3 was not found on this runner. Add actions/setup-python before this step."
+          exit 1
+        fi
+        python3 "$GITHUB_ACTION_PATH/main.py"

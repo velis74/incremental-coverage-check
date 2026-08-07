@@ -44,7 +44,12 @@ htmlcov/
 .coverage.*
 .cache
 nosetests.xml
-coverage.xml
+# Anchored: an unanchored `coverage/` would also match the incremental_coverage/coverage
+# source package and quietly drop it from commits.
+/coverage.xml
+/coverage.json
+/coverage/
+/lcov.info
 *.cover
 *.py,cover
 .hypothesis/

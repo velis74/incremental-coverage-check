@@ -1,34 +1,80 @@
+[build-system]
+# 77 is where PEP 639 landed: `license` as an SPDX expression and `license-files`.
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "incremental-coverage-check"
+description = "Fail a pull request when the lines it changes are not covered by tests."
+readme = "README.md"
+authors = [{ name = "Velis" }]
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+dynamic = ["version"]
+
+# No runtime dependencies on purpose. Everything the check needs - argparse, json,
+# xml.etree, urllib - is in the standard library, so action.yml can run it straight
+# off a bare runner without a pip install step.
+dependencies = []
+
+[project.optional-dependencies]
+# Development tooling: `pip install -e ".[dev]"`.
+#
+# ruff is pinned to the version the code was actually formatted with. Bumping it is
+# fine, but do it together with a `ruff format .` pass, or `ruff format --check` in
+# the Code check workflow will fail on formatting the new version does differently.
+# Latest at the time of writing: ruff 0.16.1, coverage 7.15.4.
+dev = [
+    "coverage==7.15.4",
+    "ruff==0.3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/velis74/incremental-coverage-check"
+
+[tool.setuptools]
+# Spelled out rather than auto-discovered: the flat layout puts main.py and test/
+# next to the package, and discovery either guesses wrong or refuses to guess.
+packages = ["incremental_coverage", "incremental_coverage.coverage"]
+py-modules = ["main"]
+
+[tool.setuptools.dynamic]
+version = { attr = "incremental_coverage.__version__" }
+
 [tool.ruff]
-exclude = ['dockertest',
-    'tests', 'docs', 'examples', 'scripts', 'setup.py', 'setup.cfg', 'README.md', 'LICENSE', 'MANIFEST.in', 'pyproject.toml', 'Pipfile', 'Pipfile.lock', 'ruff.egg-info', 'dist', 'build', '.gitignore', '.git', '.idea', '.vscode', '.pytest_cache', '.coverage', '.ruff']
 line-length = 120
+target-version = "py39"
+exclude = [
+    ".git",
+    ".idea",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".vscode",
+    "build",
+    "dist",
+    "test/resources",
+]
 
 [tool.ruff.lint]
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
-select = ["E", "F", "I"]
-ignore = []
+# Pyflakes, pycodestyle, isort, bugbear, comprehensions, pyupgrade.
+select = ["E", "F", "I", "B", "C4", "UP"]
+ignore = [
+    # `from __future__ import annotations` is deliberate: the action must run on
+    # whatever Python the runner happens to provide, down to 3.9.
+    "UP006",
+    "UP007",
+    "UP035",
+]
 
-# Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
 unfixable = []
-
-# Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.format]
-
-# Like Black, use double quotes for strings.
 quote-style = "double"
-
-# Like Black, indent with spaces, rather than tabs.
 indent-style = "space"
-
-# Like Black, respect magic trailing commas.
 skip-magic-trailing-comma = false
-
-# Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
 
 [tool.ruff.lint.isort]
@@ -36,3 +82,15 @@ case-sensitive = false
 lines-between-types = 1
 combine-as-imports = true
 order-by-type = false
+
+[tool.coverage.run]
+# main.py is what action.yml actually executes, so it is measured too.
+source = ["incremental_coverage", "main"]
+branch = false
+
+[tool.coverage.report]
+exclude_also = [
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
