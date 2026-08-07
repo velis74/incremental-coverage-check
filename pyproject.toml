@@ -25,8 +25,13 @@ dependencies = []
 # fine, but do it together with a `ruff format .` pass, or `ruff format --check` in
 # the Code check workflow will fail on formatting the new version does differently.
 # Latest at the time of writing: ruff 0.16.1, coverage 7.15.4.
+#
+# coverage is pinned twice: 7.11 dropped Python 3.9, which the check itself still
+# supports, so the 3.9 leg of the test matrix gets the last release that runs there.
+# The reports the two produce are interchangeable.
 dev = [
-    "coverage==7.15.4",
+    "coverage==7.15.4; python_version >= '3.10'",
+    "coverage==7.10.7; python_version < '3.10'",
     "ruff==0.3.0",
 ]
 
