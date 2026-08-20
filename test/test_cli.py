@@ -4,11 +4,13 @@ import json
 import os
 
 from io import StringIO
+from types import SimpleNamespace
 from unittest import TestCase
 from unittest.mock import patch
 
 from incremental_coverage.cli import (
     _comment_target,
+    _maybe_comment,
     build_parser,
     EXIT_COVERAGE_TOO_LOW,
     EXIT_ERROR,
@@ -354,3 +356,47 @@ class TestCommentTargets(TestCase):
 
     def test_no_token_means_no_comment(self) -> None:
         self.assertIsNone(_comment_target(self.make_settings(token=""), "abc1234def"))
+
+
+class TestAutoCommentDecision(TestCase):
+    """`auto` posts a passing report where it is free, and withholds it where it costs.
+
+    A pull request comment is edited in place, so posting again notifies nobody; a
+    commit comment is new on every push, and every one of them reaches the author.
+    """
+
+    def make_settings(self, comment: str, pr_number=None):
+        parser = build_parser()
+        settings = Settings(parser.parse_args([]))
+        settings.github_token = "t0ken"
+        settings.repository = "velis74/demo"
+        settings.pr_number = pr_number
+        settings.commit_comments = True
+        settings.comment = comment
+        return settings
+
+    def post(self, comment: str, pr_number=None, passed: bool = True, problems=()):
+        report = SimpleNamespace(passed=passed, problem_files=list(problems))
+        settings = self.make_settings(comment, pr_number)
+        with patch("incremental_coverage.cli.upsert_comment") as upsert:
+            upsert.return_value = "created comment 1"
+            _maybe_comment(report, settings, "# report", "abc1234def")
+        return upsert
+
+    def test_a_passing_pull_request_is_still_commented(self) -> None:
+        self.assertTrue(self.post("auto", pr_number=42).called)
+
+    def test_a_passing_push_is_not(self) -> None:
+        self.assertFalse(self.post("auto").called)
+
+    def test_a_failing_push_is(self) -> None:
+        self.assertTrue(self.post("auto", passed=False).called)
+
+    def test_a_push_that_passes_with_problem_files_is(self) -> None:
+        self.assertTrue(self.post("auto", problems=["src/thing.py"]).called)
+
+    def test_always_comments_on_a_passing_push(self) -> None:
+        self.assertTrue(self.post("always").called)
+
+    def test_never_stays_silent_on_a_failing_pull_request(self) -> None:
+        self.assertFalse(self.post("never", pr_number=42, passed=False).called)

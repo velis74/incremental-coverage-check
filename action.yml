@@ -55,9 +55,11 @@ inputs:
     default: "true"
   comment:
     description: >-
-      Post the report as a comment: auto (only when there is a problem), always or
-      never. On a pull request the comment goes on the pull request; on a push it goes
-      on the pushed commit. Either way there is one comment, updated in place.
+      Post the report as a comment: auto, always or never. On a pull request the
+      comment goes on the pull request; on a push it goes on the pushed commit. Either
+      way there is one comment, updated in place. auto always comments on a pull
+      request, and comments on a commit only when there is a problem - a commit comment
+      notifies on every push, a pull request comment does not.
     required: false
     default: "auto"
   commit-comments:

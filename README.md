@@ -271,7 +271,7 @@ check never quietly drops something.
 | `extra-ignore-patterns` | — | Additional ignore globs, kept alongside the built-in ones. |
 | `source-extensions` | see above | Replace the list of extensions treated as source code. |
 | `threshold-fails-build` | `true` | Set to `false` to report without failing the job. |
-| `comment` | `auto` | `auto` (only when something is wrong), `always`, `never`. |
+| `comment` | `auto` | `auto` (always on a pull request, on a commit only when something is wrong), `always`, `never`. |
 | `commit-comments` | `true` | Comment on the pushed commit when there is no pull request. |
 | `annotations` | `true` | Annotate uncovered lines in the Files changed tab. |
 | `job-summary` | `true` | Write the report to the job summary. |
@@ -311,8 +311,7 @@ check never quietly drops something.
 
 **Comment.** One comment, updated in place on every run rather than a new one each time.
 It is recognised by a hidden `<!-- incremental-coverage-check -->` marker, so an old
-comment is edited even if the workflow was renamed. With `comment: auto` no comment is
-posted when everything is covered.
+comment is edited even if the workflow was renamed.
 
 Where it goes depends on the event:
 
@@ -320,6 +319,14 @@ Where it goes depends on the event:
 | :-- | :-- | :-- |
 | `pull_request` | the pull request | `pull-requests: write` |
 | `push` | the pushed commit | `contents: write` |
+
+The default, `comment: auto`, treats the two differently. A pull request always gets the
+report, passing or not: one comment serves the whole branch, later runs edit it rather
+than adding to it, and it is the only place the numbers are visible without opening the
+run. A commit gets the report only when something is wrong, because every push is a
+different sha and therefore a new comment, which notifies the commit author each time.
+Use `comment: always` to have passing pushes commented too, or `comment: never` to keep
+the report to the job summary.
 
 On a push, everything between `github.event.before` and the pushed commit is graded as a
 single range — push five commits at once and you get one verdict over all five, posted as

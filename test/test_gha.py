@@ -133,6 +133,10 @@ class TestCommentTarget(TestCase):
         self.assertEqual("/repos/velis74/demo/commits/abc1234def/comments", target.listing)
         self.assertEqual("/repos/velis74/demo/comments/{id}", target.update)
 
+    def test_only_a_commit_comment_reaches_the_author_again_on_every_run(self) -> None:
+        self.assertFalse(CommentTarget.pull_request("velis74/demo", 42).renotifies)
+        self.assertTrue(CommentTarget.commit("velis74/demo", "abc1234def").renotifies)
+
 
 class TestUpsertComment(TestCase):
     def setUp(self):

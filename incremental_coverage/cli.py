@@ -175,9 +175,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--comment",
         choices=("auto", "always", "never"),
         default=None,
-        help="Post the report as a comment: auto (only when something is wrong),\n"
-        "always, or never. On a pull request the comment goes on the pull\n"
-        "request; on a push it goes on the pushed commit.",
+        help="Post the report as a comment: auto, always or never. On a pull\n"
+        "request the comment goes on the pull request; on a push it goes on the\n"
+        "pushed commit. auto always comments on a pull request, and comments on\n"
+        "a commit only when something is wrong.",
     )
     reporting.add_argument(
         "--commit-comments",
@@ -453,14 +454,20 @@ def _comment_target(settings: Settings, head_sha: str) -> Optional[CommentTarget
 def _maybe_comment(report, settings: Settings, markdown: str, head_sha: str) -> None:
     if settings.comment == "never":
         return
-    if settings.comment == "auto" and report.passed and not report.problem_files:
-        logger.debug("nothing worth commenting about")
-        return
 
     target = _comment_target(settings, head_sha)
     if target is None:
         if settings.comment == "always":
             logger.warning("cannot comment: github-token and repository are required")
+        return
+
+    # `auto` weighs the report against what posting it costs the reader.  On a pull
+    # request one comment serves the whole branch and is edited in place, so a passing
+    # report is free to post and is the only place the numbers are visible without
+    # opening the run.  A commit comment notifies on every push, so a passing report
+    # there is noise and is withheld.
+    if settings.comment == "auto" and target.renotifies and report.passed and not report.problem_files:
+        logger.debug("nothing worth commenting about")
         return
 
     try:

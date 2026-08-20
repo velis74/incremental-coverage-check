@@ -171,12 +171,27 @@ class CommentTarget:
     marker, and edit it rather than piling up a new one on every run.
     """
 
-    def __init__(self, description: str, listing: str, create: str, update: str, permission: str) -> None:
+    def __init__(
+        self,
+        description: str,
+        listing: str,
+        create: str,
+        update: str,
+        permission: str,
+        renotifies: bool,
+    ) -> None:
         self.description = description
         self.listing = listing
         self.create = create
         self.update = update
         self.permission = permission
+        # Whether posting here reaches the author again on every run.  A pull request
+        # keeps one comment across the whole branch, so the second run edits what the
+        # first one wrote and GitHub stays quiet.  A commit comment cannot: each push
+        # is a different sha, so there is no earlier comment to edit and the author is
+        # notified anew.  `comment: auto` uses this to stay silent where silence costs
+        # nothing and speak up where it does not.
+        self.renotifies = renotifies
 
     @classmethod
     def pull_request(cls, repository: str, number: int) -> CommentTarget:
@@ -186,6 +201,7 @@ class CommentTarget:
             create=f"/repos/{repository}/issues/{number}/comments",
             update=f"/repos/{repository}/issues/comments/{{id}}",
             permission="pull-requests: write",
+            renotifies=False,
         )
 
     @classmethod
@@ -196,6 +212,7 @@ class CommentTarget:
             create=f"/repos/{repository}/commits/{sha}/comments",
             update=f"/repos/{repository}/comments/{{id}}",
             permission="contents: write",
+            renotifies=True,
         )
 
 
