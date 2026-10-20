@@ -62,9 +62,15 @@ class TestFileFilter(TestCase):
         for path in ("manage.py", "setup.py", "project/settings.py", "project/settings/prod.py", "app/wsgi.py"):
             self.assertSkipped(path, "ignored")
 
-    def test_dotfiles_and_workflows_are_skipped(self) -> None:
+    def test_dotfiles_and_hidden_directories_are_skipped(self) -> None:
         self.assertSkipped(".eslintrc.js", "ignored")
         self.assertSkipped(".github/scripts/release.js", "ignored")
+        self.assertSkipped("docs/.vitepress/config.ts", "ignored")
+        self.assertSkipped("frontend/.storybook/main.ts", "ignored")
+
+    def test_dots_inside_names_do_not_make_a_directory_hidden(self) -> None:
+        self.assertGraded("src/v1.2/handler.py")
+        self.assertGraded("src/app.module.ts")
 
     def test_generated_typescript_is_skipped(self) -> None:
         self.assertSkipped("vue/src/shims.d.ts", "ignored")
