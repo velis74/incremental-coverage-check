@@ -234,7 +234,7 @@ the list with `source-extensions`.
 **Ignore patterns (deny-list).** Real source that should not be graded. Defaults:
 
 ```
-test_*.py  *_test.py  tests.py  conftest.py  test/*  tests/*  __tests__/*  __mocks__/*
+test_*.py  *_test.py  tests.py  conftest.py  test/*  tests/*  __tests__/*  __mocks__/*  e2e/*
 *.spec.*   *.test.*
 migrations/*  settings.py  settings/*  manage.py  setup.py  asgi.py  wsgi.py
 *.d.ts  *.min.js

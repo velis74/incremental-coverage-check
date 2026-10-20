@@ -48,6 +48,7 @@ DEFAULT_IGNORE_PATTERNS: Tuple[str, ...] = (
     "tests/*",
     "__tests__/*",
     "__mocks__/*",
+    "e2e/*",
     "*.spec.*",
     "*.test.*",
     # Generated or framework-owned code.

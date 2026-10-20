@@ -58,6 +58,10 @@ class TestFileFilter(TestCase):
         ):
             self.assertSkipped(path, "ignored")
 
+    def test_end_to_end_tests_are_skipped(self) -> None:
+        self.assertSkipped("e2e/login.spec.ts", "ignored")
+        self.assertSkipped("frontend/e2e/fixtures/server.ts", "ignored")
+
     def test_framework_files_are_skipped(self) -> None:
         for path in ("manage.py", "setup.py", "project/settings.py", "project/settings/prod.py", "app/wsgi.py"):
             self.assertSkipped(path, "ignored")
