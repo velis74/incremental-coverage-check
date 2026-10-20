@@ -62,7 +62,7 @@ DEFAULT_IGNORE_PATTERNS: Tuple[str, ...] = (
     "*.min.js",
     # Tooling and configuration living next to the code.
     ".*",
-    ".github/*",
+    ".*/*",
     "*.config.js",
     "*.config.ts",
     "vite.config.*",

@@ -238,7 +238,7 @@ test_*.py  *_test.py  tests.py  conftest.py  test/*  tests/*  __tests__/*  __moc
 *.spec.*   *.test.*
 migrations/*  settings.py  settings/*  manage.py  setup.py  asgi.py  wsgi.py
 *.d.ts  *.min.js
-.*  .github/*  *.config.js  *.config.ts  vite.config.*  vitest.config.*
+.*  .*/*  *.config.js  *.config.ts  vite.config.*  vitest.config.*
 ```
 
 A pattern without a slash matches the file name anywhere in the tree; a pattern with a
