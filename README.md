@@ -9,7 +9,7 @@ backfills tests for code they never touched. This action grades only the diff. I
 change adds ten executable lines and seven of them are exercised by the test suite, the
 change is at 70%, no matter what the rest of the repository looks like.
 
-It reads five coverage formats and merges them, so a Python backend and a TypeScript
+It reads six coverage formats and merges them, so a Python backend and a TypeScript
 frontend are graded together in a single report.
 
 ```
@@ -157,6 +157,7 @@ The format of each file is detected from its content, so any mix can be listed t
 | Cobertura XML | `coverage xml`, `pytest --cov-report=xml` | `coverage.xml` |
 | istanbul JSON | vitest / jest `json` reporter | `coverage/coverage-final.json` |
 | Clover XML | vitest default reporters, jest `clover` | `coverage/clover.xml` |
+| JaCoCo XML | Gradle `jacoco` plugin, Android `enableUnitTestCoverage` | `build/reports/jacoco/**/*.xml` |
 | LCOV | vitest / jest `lcov` reporter | `coverage/lcov.info` |
 
 Glob patterns are allowed, which is handy in a monorepo:
@@ -187,6 +188,10 @@ Candidates are tried in two tiers:
    resolves to `packages/a/src/index.ts`.
 2. **Trimmed** — leading segments dropped one at a time, longest match first. This is what
    catches an istanbul report built in a container under `/build/app/vue/src/table.ts`.
+
+A path found in neither tier is matched by suffix: the checkout file it is a whole-segment
+suffix of. This is how a JaCoCo report, which names files relative to a source root it does
+not record (`com/acme/Filter.java`), finds `app/src/main/java/com/acme/Filter.java`.
 
 If the first tier that produces a hit produces more than one, the answer is ambiguous. The
 entry is then **discarded rather than guessed**: the file ends up with no coverage data,
@@ -228,13 +233,14 @@ comments — passes.
 Two gates, in order.
 
 **Source extensions (allow-list).** Only files that could ever be instrumented are
-graded. Default: `.py .pyi .js .jsx .mjs .cjs .ts .tsx .mts .cts .vue .svelte`. Replace
+graded. Default: `.py .pyi .js .jsx .mjs .cjs .ts .tsx .mts .cts .vue .svelte .java .kt`. Replace
 the list with `source-extensions`.
 
 **Ignore patterns (deny-list).** Real source that should not be graded. Defaults:
 
 ```
 test_*.py  *_test.py  tests.py  conftest.py  test/*  tests/*  __tests__/*  __mocks__/*  e2e/*
+androidTest/*
 *.spec.*   *.test.*
 migrations/*  settings.py  settings/*  manage.py  setup.py  asgi.py  wsgi.py
 *.d.ts  *.min.js
@@ -432,7 +438,7 @@ incremental_coverage/
     paths.py         resolving report paths onto files in the checkout
     coverage/
         model.py     the format-independent coverage model
-        parsers.py   the five report formats
+        parsers.py   the six report formats
     ignore.py        which changed files must be covered
     analysis.py      the scoring rules
     render.py        terminal, Markdown and annotation output

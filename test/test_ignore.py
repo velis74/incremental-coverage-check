@@ -24,6 +24,8 @@ class TestFileFilter(TestCase):
             "vue/src/components/table.vue",
             "scripts/build.mjs",
             "src/index.tsx",
+            "app/src/main/java/com/acme/Filter.java",
+            "app/src/main/kotlin/com/acme/Clock.kt",
         ):
             self.assertGraded(path)
 
@@ -47,6 +49,8 @@ class TestFileFilter(TestCase):
             "vue/src/table.spec.ts",
             "vue/src/table.test.ts",
             "vue/__tests__/table.ts",
+            "app/src/test/java/com/acme/FilterTest.java",
+            "app/src/androidTest/java/com/acme/FilterUiTest.kt",
         ):
             self.assertSkipped(path, "ignored")
 

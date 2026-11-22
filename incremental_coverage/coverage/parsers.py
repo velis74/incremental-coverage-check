@@ -208,6 +208,43 @@ def _parse_cobertura(path: str, root: ElementTree.Element) -> CoverageData:
 
 
 # --------------------------------------------------------------------------- #
+# JaCoCo XML
+# --------------------------------------------------------------------------- #
+
+
+def _detect_jacoco(root: ElementTree.Element) -> bool:
+    return root.tag == "report" and (root.find("package") is not None or root.find("group") is not None)
+
+
+def _parse_jacoco(path: str, root: ElementTree.Element) -> CoverageData:
+    """Lines of every <sourcefile>, named <package name>/<sourcefile name>.
+
+    The path is relative to a source root (e.g. ``app/src/main/java``) the report does not
+    record; the resolver finds the file by its suffix in the checkout.
+    """
+    coverage = CoverageData()
+    for package_node in root.iter("package"):
+        package = (package_node.get("name") or "").strip("/")
+        for source_node in package_node.findall("sourcefile"):
+            name = source_node.get("name")
+            if not name:
+                continue
+            covered: Set[int] = set()
+            missed: Set[int] = set()
+            for line_node in source_node.findall("line"):
+                line = _int(line_node.get("nr"), 0)
+                if line < 1:
+                    continue
+                if _int(line_node.get("ci"), 0) > 0:
+                    covered.add(line)
+                elif _int(line_node.get("mi"), 0) > 0:
+                    missed.add(line)
+            missed -= covered
+            coverage.add(f"{package}/{name}" if package else name, covered, missed)
+    return coverage
+
+
+# --------------------------------------------------------------------------- #
 # LCOV
 # --------------------------------------------------------------------------- #
 
@@ -263,7 +300,7 @@ def _parse_lcov(path: str, text: str) -> CoverageData:
 # Dispatch
 # --------------------------------------------------------------------------- #
 
-FORMATS = ("coverage.py", "istanbul", "clover", "cobertura", "lcov")
+FORMATS = ("coverage.py", "istanbul", "clover", "cobertura", "jacoco", "lcov")
 
 
 def parse_report(path: str, fmt: Optional[str] = None) -> CoverageData:
@@ -297,18 +334,20 @@ def parse_report(path: str, fmt: Optional[str] = None) -> CoverageData:
                 detected = "clover"
             elif _detect_cobertura(root):
                 detected = "cobertura"
+            elif _detect_jacoco(root):
+                detected = "jacoco"
     elif detected is None and _detect_lcov(text):
         detected = "lcov"
 
     if detected is None:
         raise CoverageParseError(
             f"cannot determine the format of {path}. Supported formats: "
-            f"coverage.py JSON, Cobertura XML, istanbul JSON, Clover XML, LCOV."
+            f"coverage.py JSON, Cobertura XML, istanbul JSON, Clover XML, JaCoCo XML, LCOV."
         )
 
     if detected in ("coverage.py", "istanbul") and data is None:
         data = _load_json(path, text)
-    if detected in ("clover", "cobertura") and root is None:
+    if detected in ("clover", "cobertura", "jacoco") and root is None:
         root = _load_xml(path, text)
 
     parsers: Dict[str, Callable[[], CoverageData]] = {
@@ -316,6 +355,7 @@ def parse_report(path: str, fmt: Optional[str] = None) -> CoverageData:
         "istanbul": lambda: _parse_istanbul(path, data),
         "clover": lambda: _parse_clover(path, root),  # type: ignore[arg-type]
         "cobertura": lambda: _parse_cobertura(path, root),  # type: ignore[arg-type]
+        "jacoco": lambda: _parse_jacoco(path, root),  # type: ignore[arg-type]
         "lcov": lambda: _parse_lcov(path, text),
     }
 

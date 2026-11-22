@@ -36,6 +36,8 @@ DEFAULT_SOURCE_EXTENSIONS: Tuple[str, ...] = (
     ".cts",
     ".vue",
     ".svelte",
+    ".java",
+    ".kt",
 )
 
 DEFAULT_IGNORE_PATTERNS: Tuple[str, ...] = (
@@ -49,6 +51,7 @@ DEFAULT_IGNORE_PATTERNS: Tuple[str, ...] = (
     "__tests__/*",
     "__mocks__/*",
     "e2e/*",
+    "androidTest/*",
     "*.spec.*",
     "*.test.*",
     # Generated or framework-owned code.
