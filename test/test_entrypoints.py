@@ -34,6 +34,10 @@ class TestEntryPoints(TestCase):
         module = runpy.run_module("incremental_coverage.__main__", run_name="not_main")
         self.assertTrue(callable(module["main"]))
 
+    def test_pyproject_version_matches_the_package(self) -> None:
+        with open(os.path.join(ROOT, "pyproject.toml"), encoding="utf-8") as handle:
+            self.assertIn(f'version = "{__version__}"', handle.read())
+
     def test_the_script_the_action_runs_starts_up(self) -> None:
         result = self.run_entry_point("main.py")
         self.assertEqual(0, result.returncode, result.stderr)

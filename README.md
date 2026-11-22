@@ -12,7 +12,7 @@ change is at 70%, no matter what the rest of the repository looks like.
 It reads six coverage formats and merges them, so a Python backend and a TypeScript
 frontend are graded together in a single report.
 
-```
+```text
   INCREMENTAL COVERAGE  ·  31.2%
   ──────────────────────────────────────────────────────────────────────
   main (f65e05f) → feature/discounts (c875d0a)
@@ -216,7 +216,7 @@ producing one report per root, resolves it.
 4. **Intersect with the misses.** Every remaining line that the coverage report marks as
    not executed is counted against you.
 
-```
+```text
 coverage = covered changed executable lines / all changed executable lines
 ```
 
@@ -238,7 +238,7 @@ the list with `source-extensions`.
 
 **Ignore patterns (deny-list).** Real source that should not be graded. Defaults:
 
-```
+```text
 test_*.py  *_test.py  tests.py  conftest.py  test/*  tests/*  __tests__/*  __mocks__/*  e2e/*
 androidTest/*
 *.spec.*   *.test.*
@@ -367,7 +367,7 @@ The check is a plain Python program with no dependencies:
 python3 main.py --base main --coverage coverage.json --threshold 80
 ```
 
-```
+```text
 usage: incremental-coverage-check [-h] [--version] [-c PATH] [-b REF] [-H REF] [-w DIR]
                                   [--files PATH [PATH ...]] [-t THRESHOLD] [--ignore GLOB]
                                   [--extra-ignore GLOB] [--source-extensions EXT]
@@ -423,14 +423,15 @@ that fork pull requests cannot post at all.
 ## Development
 
 ```bash
-pip install -e ".[dev]"                      # coverage + ruff, pinned in pyproject.toml
-python3 -m unittest discover -s test -t .    # tests
-ruff check . && ruff format --check .        # lint
+uv sync                                          # coverage + ruff, pinned in pyproject.toml
+uv run python -m unittest discover -s test -t .  # tests
+uv run ruff check . && uv run ruff format --check .
+npx markdownlint-cli2                            # Markdown
 ```
 
 Layout:
 
-```
+```text
 incremental_coverage/
     cli.py           argument parsing, orchestration, exit codes
     gitutil.py       every git invocation, with real error messages
