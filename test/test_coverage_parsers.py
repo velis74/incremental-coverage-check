@@ -48,6 +48,28 @@ CLOVER = """<?xml version="1.0" encoding="UTF-8"?>
 </coverage>
 """
 
+JACOCO = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN" "report.dtd">
+<report name="app">
+  <sessioninfo id="runner" start="1700000000000" dump="1700000001000"/>
+  <package name="com/acme/pipeline">
+    <class name="com/acme/pipeline/Filter" sourcefilename="Filter.java">
+      <method name="accept" desc="()V" line="10"/>
+    </class>
+    <sourcefile name="Filter.java">
+      <line nr="10" mi="0" ci="3" mb="0" cb="0"/>
+      <line nr="11" mi="2" ci="0" mb="0" cb="0"/>
+      <line nr="12" mi="1" ci="1" mb="1" cb="1"/>
+      <counter type="LINE" missed="1" covered="2"/>
+    </sourcefile>
+    <sourcefile name="Clock.kt">
+      <line nr="5" mi="4" ci="0" mb="0" cb="0"/>
+    </sourcefile>
+  </package>
+  <counter type="LINE" missed="2" covered="2"/>
+</report>
+"""
+
 COBERTURA = """<?xml version="1.0" ?>
 <coverage version="7.4.0">
   <sources><source>/home/runner/work/repo/repo</source></sources>
@@ -134,6 +156,23 @@ class TestCobertura(ParserTestCase):
         self.assertEqual({1}, entry.covered_lines)
         self.assertEqual({4}, entry.uncovered_lines)
         self.assertEqual("cobertura", coverage.sources[0].format)
+
+
+class TestJacoco(ParserTestCase):
+    def test_parses_instruction_counts_per_source_file(self) -> None:
+        coverage = self.parse("jacocoTestReport.xml", JACOCO)
+        entry = coverage.lookup("com/acme/pipeline/Filter.java")
+        self.assertEqual({10, 12}, entry.covered_lines)  # a line with any covered instruction counts as covered
+        self.assertEqual({11}, entry.uncovered_lines)
+        self.assertEqual({5}, coverage.lookup("com/acme/pipeline/Clock.kt").uncovered_lines)
+        self.assertEqual("jacoco", coverage.sources[0].format)
+
+    def test_resolves_onto_the_source_root_in_the_checkout(self) -> None:
+        root = self.directory.name
+        write(os.path.join(root, "app/src/main/java/com/acme/pipeline/Filter.java"), "class Filter {}\n")
+        report = write(os.path.join(root, "app/build/reports/jacoco/report.xml"), JACOCO)
+        coverage = load_reports([(report, None)], root)
+        self.assertEqual({10, 12}, coverage.lookup("app/src/main/java/com/acme/pipeline/Filter.java").covered_lines)
 
 
 class TestLcov(ParserTestCase):

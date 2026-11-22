@@ -1,7 +1,7 @@
 name: "Incremental coverage check"
 description: >-
   Fail a pull request when the lines it changes are not covered by tests.
-  Understands coverage.py JSON, Cobertura XML, istanbul JSON, Clover XML and LCOV,
+  Understands coverage.py JSON, Cobertura XML, istanbul JSON, Clover XML, JaCoCo XML and LCOV,
   so a Python backend and a TypeScript frontend can be graded in a single report.
 author: "Velis"
 

@@ -16,7 +16,8 @@ concurrency:
 jobs:
   coverage:
     name: Incremental coverage
-    runs-on: ubuntu-latest
+    # setup-python has no 3.9 build for Ubuntu 26.04 (ubuntu-latest); the 3.9 leg runs on 24.04.
+    runs-on: ${{ matrix.python-version == '3.9' && 'ubuntu-24.04' || 'ubuntu-latest' }}
     strategy:
       fail-fast: false
       matrix:
