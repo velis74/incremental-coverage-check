@@ -47,3 +47,13 @@ jobs:
         with:
           coverage-files: coverage.json
           threshold: "80"
+
+  # the required status check: fails when any other job of this workflow failed or was cancelled
+  all-green:
+    name: all-green (incremental-coverage-check)
+    if: always()
+    needs: [coverage]
+    runs-on: ubuntu-latest
+    steps:
+      - if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
